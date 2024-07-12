@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/TANAKAYu/Scenes/Title.unity
+    guid: eb35e7390b80d894499d1c2cd30630db
+  - enabled: 1
     path: Assets/TANAKAYu/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/TANAKAYu/Scenes/GameOver.unity
+    guid: 546378e7a1b211d43a6fad2c875203c8
+  - enabled: 1
+    path: Assets/TANAKAYu/Scenes/Clear.unity
+    guid: 35a0a191299ca714d8100a7af4515e48
   m_configObjects: {}

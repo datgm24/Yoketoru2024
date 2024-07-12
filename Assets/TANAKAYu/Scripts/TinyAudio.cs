@@ -3,7 +3,7 @@ public class TinyAudio : MonoBehaviour
 {
     public static TinyAudio Instance { get; private set; }
     /// <summary>
-    /// seList‚Éİ’è‚·‚éŒø‰Ê‰¹‚Ìí—Ş‚ğˆÈ‰º‚É’è‹`‚µ‚Ü‚·B
+    /// seListã«è¨­å®šã™ã‚‹åŠ¹æœéŸ³ã®ç¨®é¡ã‚’ä»¥ä¸‹ã«å®šç¾©ã—ã¾ã™ã€‚
     /// </summary>
     public enum SE
     {
@@ -15,7 +15,7 @@ public class TinyAudio : MonoBehaviour
         GameOver,
         Clear,
     }
-    [Tooltip("Œø‰Ê‰¹‚ÌAudio Clip‚ğASE‚Ì—ñ‹“q‚Æ“¯‚¶‡”Ô‚Åİ’è‚µ‚Ä‚­‚¾‚³‚¢B"), SerializeField]
+    [Tooltip("åŠ¹æœéŸ³ã®Audio Clipã‚’ã€SEã®åˆ—æŒ™å­ã¨åŒã˜é †ç•ªã§è¨­å®šã—ã¦ãã ã•ã„ã€‚"), SerializeField]
     AudioClip[] seList;
     AudioSource audioSource;
     private void Awake()
@@ -24,9 +24,9 @@ public class TinyAudio : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
     /// <summary>
-    /// SE‚Åw’è‚µ‚½Œø‰Ê‰¹‚ğÄ¶‚µ‚Ü‚·B
+    /// SEã§æŒ‡å®šã—ãŸåŠ¹æœéŸ³ã‚’å†ç”Ÿã—ã¾ã™ã€‚
     /// </summary>
-    /// <param name="se">–Â‚ç‚µ‚½‚¢Œø‰Ê‰¹</param>
+    /// <param name="se">é³´ã‚‰ã—ãŸã„åŠ¹æœéŸ³</param>
     public static void PlaySE(SE se)
     {
         Instance.audioSource.PlayOneShot(Instance.seList[(int)se]);
