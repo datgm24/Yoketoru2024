@@ -8,7 +8,7 @@ public class ToNextScene : MonoBehaviour
     [Tooltip("切り替えたいシーン名"), SerializeField]
     string nextScene = default;
 
-    bool sceneChanged;
+    bool sceneChanged = false;
 
     public void ChangeScene()
     {
@@ -18,7 +18,6 @@ public class ToNextScene : MonoBehaviour
         }
 
         sceneChanged = true;
-        TinyAudio.PlaySE(TinyAudio.SE.Start);
         SceneManager.LoadScene(nextScene);
     }
 }
