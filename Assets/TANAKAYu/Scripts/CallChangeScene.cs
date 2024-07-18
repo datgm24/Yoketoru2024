@@ -15,7 +15,7 @@ public class CallChangeScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Next"))
+        if (Input.GetButtonUp("Next"))
         {
             toNextScene.ChangeScene();
         }
