@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TANAKAYu/Scenes/Clear.unity
     guid: 35a0a191299ca714d8100a7af4515e48
+  - enabled: 1
+    path: Assets/TANAKAYu/Scenes/Credits.unity
+    guid: 3518684ae37fad343a8f7be2fc21a11c
   m_configObjects: {}
