@@ -2076,6 +2076,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1252261734843407756, guid: 29ba7f0d356661148a3ce3b07ccd735e, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8753187315404667692, guid: 29ba7f0d356661148a3ce3b07ccd735e, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2122,7 +2126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8753187315404667695, guid: 29ba7f0d356661148a3ce3b07ccd735e, type: 3}
       propertyPath: m_Name
-      value: RockFrame (1)
+      value: RockFrame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29ba7f0d356661148a3ce3b07ccd735e, type: 3}
@@ -2814,10 +2818,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
-    - target: {fileID: 3250369171309364735, guid: 03fee727211b6244fab77b34c9cda55f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.05
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03fee727211b6244fab77b34c9cda55f, type: 3}
 --- !u!1001 &5500034367959372113
@@ -3146,7 +3146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9212370000602850332, guid: 3f3841b7925bac8459e99c86cb52faae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.84
+      value: -0.608
       objectReference: {fileID: 0}
     - target: {fileID: 9212370000602850332, guid: 3f3841b7925bac8459e99c86cb52faae, type: 3}
       propertyPath: m_LocalPosition.z
