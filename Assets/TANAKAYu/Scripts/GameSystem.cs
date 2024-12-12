@@ -45,7 +45,7 @@ public class GameSystem : MonoBehaviour
         SceneChanger.Changed.AddListener(SetInstanceToSceneBehaviour);
 
         // 起動処理
-        Fade.Cover(Color.black);
+        StartCoroutine(Fade.Cover(Color.black));
         SceneChanger.ChangeScene(loadTitleScene, unloadScenes);
     }
 

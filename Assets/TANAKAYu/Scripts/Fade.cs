@@ -1,8 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
 {
+    Animator animator;
+    Image image;
+    bool isPlaying;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        image = GetComponentInChildren<Image>();
+    }
+
     /// <summary>
     /// 画面を隠す処理のコルーチン。
     /// </summary>
@@ -10,8 +21,24 @@ public class Fade : MonoBehaviour
     /// <param name="time">隠す秒数。0のときは即時</param>
     public IEnumerator Cover(Color color, float time = 0)
     {
-        Debug.Log($"画面を隠す処理を開始。");
-        yield return null;
+        image.color = color;
+        if (Mathf.Approximately(time, 0))
+        {
+            animator.SetBool("Cover", true);
+            animator.SetBool("Force", true);
+            isPlaying = false;
+        }
+        else
+        {
+            // アニメ
+            animator.SetBool("Cover", true);
+            animator.SetBool("Force", false);
+            isPlaying = true;
+            while (isPlaying)
+            {
+                yield return null;
+            }
+        }
     }
 
     /// <summary>
@@ -20,7 +47,31 @@ public class Fade : MonoBehaviour
     /// <param name="time">演出秒数。0や省略で即時</param>
     public IEnumerator Uncover(float time = 0)
     {
-        Debug.Log($"画面を表示する処理を開始。");
-        yield return null;
+        if (Mathf.Approximately(time, 0))
+        {
+            animator.SetBool("Cover", false);
+            animator.SetBool("Force", true);
+            isPlaying = false;
+        }
+        else
+        {
+            // アニメ
+            animator.SetBool("Cover", false);
+            animator.SetBool("Force", false);
+            isPlaying = true;
+            while (isPlaying)
+            {
+                yield return null;
+            }
+        }
     }
+
+    /// <summary>
+    /// アニメが終了したら、これを呼び出す。
+    /// </summary>
+    public void Animated()
+    {
+        isPlaying = false;
+    }
+
 }
