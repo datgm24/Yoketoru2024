@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 192709248}
   - component: {fileID: 192709249}
   m_Layer: 0
-  m_Name: SceneChanger
+  m_Name: Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 192709247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ad3f5be11cef74428ea3575f182ae8c, type: 3}
+  m_Script: {fileID: 11500000, guid: e30a3a445e6094c4bb443ea8f464a98f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &407870187
@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434b7fd642a951740bfbe1939911a593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fade: {fileID: 192709249}
 --- !u!1 &426347273
 GameObject:
   m_ObjectHideFlags: 0
