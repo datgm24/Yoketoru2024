@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// シーンの管理用スクリプトの基底クラス。
+/// GameSystemのインスタンスが必要なクラスは、これを継承。
+/// </summary>
 public class SceneBehaviourBase : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameSystem GameSystem { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// シーンを開始するメソッド。
+    /// これをオーバーライドして、各シーンを開始する。
+    /// </summary>
+    /// <param name="gameSystem">ゲームシステムのインスタンス</param>
+    public virtual void StartScene(GameSystem gameSystem)
     {
-        
+        GameSystem = gameSystem;
     }
 }

@@ -54,6 +54,10 @@ public class GameSystem : MonoBehaviour
     /// </summary>
     void SetInstanceToSceneBehaviour()
     {
-        Debug.Log($"シーンに、GameSystemのインスタンスを渡す。");
+        var sceneBehaviours = GameObject.FindObjectsOfType<SceneBehaviourBase>();
+        for (int i = 0; i < sceneBehaviours.Length; i++)
+        {
+            sceneBehaviours[i].StartScene(this);
+        }
     }
 }
