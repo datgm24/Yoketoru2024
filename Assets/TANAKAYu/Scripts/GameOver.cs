@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Animator animator;
+
+    private void Awake()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Show()
     {
-        
+        animator.SetBool("State", true);
+    }
+
+    public void Hide()
+    {
+        animator.SetBool("State", false);
+    }
+
+    public void OnShowed()
+    {
+
+    }
+
+    public void OnHided()
+    {
+
     }
 }

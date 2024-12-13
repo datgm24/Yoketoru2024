@@ -53,13 +53,29 @@ public class Game : SceneBehaviourBase
                 break;
 
             case State.GameOver:
-                Debug.Log($"GameOver");
+                StartCoroutine(ShowGameOver());
                 break;
 
             case State.Clear:
-                Debug.Log($"Clear");
+                StartCoroutine(ShowClear());
                 break;
         }
+    }
+
+    /// <summary>
+    /// ゲームオーバー表示
+    /// </summary>
+    IEnumerator ShowGameOver()
+    {
+        yield return null;
+    }
+
+    /// <summary>
+    /// クリア表示
+    /// </summary>
+    IEnumerator ShowClear()
+    {
+        yield return null;
     }
 
     void UpdateState()
