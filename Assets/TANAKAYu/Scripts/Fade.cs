@@ -33,6 +33,7 @@ public class Fade : MonoBehaviour
             // アニメ
             animator.SetBool("Cover", true);
             animator.SetBool("Force", false);
+            animator.SetFloat("Speed", 1f / time);
             isPlaying = true;
             while (isPlaying)
             {
@@ -58,6 +59,7 @@ public class Fade : MonoBehaviour
             // アニメ
             animator.SetBool("Cover", false);
             animator.SetBool("Force", false);
+            animator.SetFloat("Speed", 1f / time);
             isPlaying = true;
             while (isPlaying)
             {
