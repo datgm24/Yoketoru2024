@@ -90,7 +90,7 @@ public class Title : SceneBehaviourBase
                 break;
 
             case State.GameStart:
-                Debug.Log("GameStart");
+                StartCoroutine(GameStart());
                 break;
         }
     }
@@ -142,5 +142,30 @@ public class Title : SceneBehaviourBase
         {
             state.SetNextState(State.Credits);
         }
+    }
+
+    static float CoverSeconds => 1f;
+    static Color CoverColor => Color.black;
+
+    /// <summary>
+    /// ゲームシーンに切り替える処理。
+    /// </summary>
+    IEnumerator GameStart()
+    {
+        GameSystem.Stage.Start();
+
+        yield return GameSystem.Fade.Cover(CoverColor, CoverSeconds);
+
+        string[] loadScenes =
+        {
+            "Game",
+            GameSystem.Stage.StageSceneName,
+        };
+        string[] unloadScenes =
+        {
+            "Title",
+            "Credits",
+        };
+        GameSystem.SceneChanger.ChangeScene(loadScenes, unloadScenes);
     }
 }

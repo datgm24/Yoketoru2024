@@ -18,7 +18,12 @@ public class GameSystem : MonoBehaviour
     /// <summary>
     /// シーン切り替え処理を提供するクラス。
     /// </summary>
-    public SceneChanger SceneChanger => sceneChanger;    
+    public SceneChanger SceneChanger => sceneChanger;
+
+    /// <summary>
+    /// ステージ数
+    /// </summary>
+    public Stage Stage { get; private set; } = new();
 
     readonly string[] loadTitleScene =
     {
