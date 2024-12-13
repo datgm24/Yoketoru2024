@@ -18,16 +18,16 @@ public sealed class SimpleState<T> where T : Enum
     /// 次の状態が設定されていたら、切り替えて、切り替えた状態を返す。
     /// 切り替えがなければ、Noneを返す。
     /// </summary>
-    /// <returns>切り替えた状態。切り替えがなければnone</returns>
-    public T ChangeState()
+    /// <returns>切り替えが発生したら、true。</returns>
+    public bool ChangeState()
     {
         if (nextState.Equals(none))
         {
-            return none;
+            return false;
         }
         CurrentState = nextState;
         nextState = none;
-        return CurrentState;
+        return true;
     }
 
     /// <summary>
