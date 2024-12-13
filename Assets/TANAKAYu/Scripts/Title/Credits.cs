@@ -3,18 +3,23 @@ using UnityEngine.Events;
 
 public class Credits : MonoBehaviour
 {
-    [SerializeField]
-    Animator creditsAnimator = default;
+    Animator creditsAnimator;
 
     /// <summary>
     /// クレジットが消えたら、Invoke。
     /// </summary>
+    [HideInInspector]
     public UnityEvent Hided = new();
 
     /// <summary>
     /// 操作可能状態
     /// </summary>
     bool canControl;
+
+    private void Awake()
+    {
+        creditsAnimator = GetComponent<Animator>();
+    }
 
     private void Update()
     {

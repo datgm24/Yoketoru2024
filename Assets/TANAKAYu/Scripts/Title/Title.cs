@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Title : SceneBehaviourBase
 {
     static float UncoverSeconds => 1;
+    static string CreditsSceneName => "Credits";
 
     enum State
     {
@@ -37,7 +39,7 @@ public class Title : SceneBehaviourBase
     {
         yield return GameSystem.Fade.Uncover(UncoverSeconds);
 
-        // TODO: Start Title Control
+        // Start Title Control
         state.SetNextState(State.CanControl);
     }
 
@@ -45,6 +47,22 @@ public class Title : SceneBehaviourBase
     {
         InitState();
         UpdateState();
+    }
+
+    private void OnDestroy()
+    {
+        if (credits != null)
+        {
+            credits.Hided.RemoveAllListeners();
+        }
+    }
+
+    public void OnStartClicked()
+    {
+        if (state.CurrentState == State.CanControl)
+        {
+            state.SetNextState(State.GameStart);
+        }
     }
 
     /// <summary>
@@ -68,7 +86,7 @@ public class Title : SceneBehaviourBase
         switch (state.CurrentState)
         {
             case State.Credits:
-                InitCredits();
+                StartCoroutine(InitCredits());
                 break;
 
             case State.GameStart:
@@ -87,9 +105,31 @@ public class Title : SceneBehaviourBase
         }
     }
 
-    void InitCredits()
+    /// <summary>
+    /// クレジットシーンの表示開始
+    /// </summary>
+    IEnumerator InitCredits()
     {
-        Debug.Log($"Show Credits");
+        if (credits == null)
+        {
+            yield return SceneManager.LoadSceneAsync(CreditsSceneName, LoadSceneMode.Additive);
+
+            // シーン上のゲームオブジェクトの初期化のため、1フレーム待つ
+            yield return null;
+
+            credits = GameObject.FindObjectOfType<Credits>();
+            credits.Hided.AddListener(OnCreditsHided);
+        }
+
+        credits.Show();
+    }
+
+    /// <summary>
+    /// クレジットが閉じたら、タイトル画面の操作を再開。
+    /// </summary>
+    void OnCreditsHided()
+    {
+        state.SetNextStateForce(State.CanControl);
     }
 
     void UpdateControl()
