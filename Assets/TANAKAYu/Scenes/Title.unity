@@ -733,9 +733,8 @@ GameObject:
   m_Component:
   - component: {fileID: 486716900}
   - component: {fileID: 486716901}
-  - component: {fileID: 486716902}
   m_Layer: 0
-  m_Name: TitleManager
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -765,20 +764,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 486716899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d3e585638c44f44897b2630e181ae8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextScene: Game
---- !u!114 &486716902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 486716899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef16068c757d19a4abe4b0f937171216, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ca56448c8d402f4e891fcc164f23083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &605515838
@@ -1668,7 +1654,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 486716901}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ToNextScene, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 1

@@ -7,6 +7,8 @@ public class GameSystem : MonoBehaviour
 {
     [SerializeField]
     Fade fade = default;
+    [SerializeField]
+    SceneChanger sceneChanger = default;
 
     /// <summary>
     /// フェードを制御するインスタンス。
@@ -16,7 +18,7 @@ public class GameSystem : MonoBehaviour
     /// <summary>
     /// シーン切り替え処理を提供するクラス。
     /// </summary>
-    public SceneChanger SceneChanger { get; private set; } = new SceneChanger();
+    public SceneChanger SceneChanger => sceneChanger;    
 
     readonly string[] loadTitleScene =
     {

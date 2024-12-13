@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Title : MonoBehaviour
+public class Title : SceneBehaviourBase
 {
-    // Start is called before the first frame update
-    void Start()
+    static float UncoverSeconds => 1;
+
+    public override void StartScene(GameSystem gameSystem)
     {
-        
+        base.StartScene(gameSystem);
+
+        StartCoroutine(StartTitle());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator StartTitle()
     {
-        
+        yield return GameSystem.Fade.Uncover(UncoverSeconds);
+
+        // TODO: Start Title Control
     }
 }
