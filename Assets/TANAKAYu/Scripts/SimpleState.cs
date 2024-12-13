@@ -14,6 +14,12 @@ public sealed class SimpleState<T> where T : Enum
     /// </summary>
     T none = (T)Enum.Parse(typeof(T), "-1");
 
+    public SimpleState()
+    {
+        CurrentState = none;
+        nextState = none;
+    }
+
     /// <summary>
     /// 次の状態が設定されていたら、切り替えて、切り替えた状態を返す。
     /// 切り替えがなければ、Noneを返す。
