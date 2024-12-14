@@ -46,7 +46,7 @@ public class SceneChanger : MonoBehaviour
         operations.Clear();
         for (int i = 0; i < loadScenes.Length; i++)
         {
-            if (!IsSceneLoaded(unloadScenes[i]))
+            if (!IsSceneLoaded(loadScenes[i]))
             {
                 operations.Add(SceneManager.LoadSceneAsync(loadScenes[i], LoadSceneMode.Additive));
             }
@@ -77,7 +77,7 @@ public class SceneChanger : MonoBehaviour
     /// <returns>シーンが読み込まれていたら、true</returns>
     bool IsSceneLoaded(string sceneName)
     {
-        var scene = SceneManager.GetSceneByName( sceneName );
+        var scene = SceneManager.GetSceneByName(sceneName);
         if (scene == null)
         {
             return false;
