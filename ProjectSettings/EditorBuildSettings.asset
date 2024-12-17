@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TANAKAYu/Scenes/Stages/Stage1.unity
     guid: 67401b5865ef4f144925a30a3cee7b1f
+  - enabled: 1
+    path: Assets/TANAKAYu/Scenes/Stages/Stage2.unity
+    guid: f3206b9675d463a44995b7ff9597a8c0
+  - enabled: 1
+    path: Assets/TANAKAYu/Scenes/AllClear.unity
+    guid: 070f5756242fecf41b7e462933cd7e6d
   m_configObjects: {}

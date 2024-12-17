@@ -9,8 +9,17 @@ public class Game : SceneBehaviourBase
 {
     static float StartUncoverSeconds => 1f;
 
+    // タイトルへ
     static float ToTitleSeconds => 1f;
     static Color ToTitleColor => Color.black;
+
+    // 次のステージへ
+    static Color NextStageColor => Color.white;
+    static float NextStageSeconds => 1.5f;
+
+    // 全ステージクリアへ
+    static Color AllClearColor => Color.white;
+    static float AllClearSeconds => 2f;
 
     enum State
     {
@@ -94,9 +103,62 @@ public class Game : SceneBehaviourBase
                 break;
 
             case State.NextStage:
-                Debug.Log($"NextStage");
+                string unloadStage = GameSystem.Stage.StageSceneName;
+                if (GameSystem.Stage.Next())
+                {
+                    // エンディングへ
+                    StartCoroutine(ToAllClear(unloadStage));
+                }
+                else
+                {
+                    // 次のステージへ
+                    StartCoroutine(NextStage(unloadStage));
+                }
                 break;
         }
+    }
+
+    /// <summary>
+    /// 全ステージクリアへ
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator ToAllClear(string unloadStage)
+    {
+        string[] loadScenes =
+        {
+            "AllClear",
+        };
+        string[] unloadScenes =
+        {
+            "Game",
+            unloadStage,
+            "Clear",
+        };
+
+        yield return GameSystem.Fade.Cover(AllClearColor, AllClearSeconds);
+        GameSystem.SceneChanger.ChangeScene(loadScenes, unloadScenes);
+    }
+
+    /// <summary>
+    /// 次のステージへ
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator NextStage(string unloadStage)
+    {
+        string[] loadScenes =
+        {
+            "Game",
+            GameSystem.Stage.StageSceneName,
+        };
+        string[] unloadScenes =
+        {
+            "Game",
+            unloadStage,
+            "Clear",
+        };
+
+        yield return GameSystem.Fade.Cover(NextStageColor, NextStageSeconds);
+        GameSystem.SceneChanger.ChangeScene(loadScenes, unloadScenes);
     }
 
     /// <summary>
