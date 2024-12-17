@@ -16,6 +16,10 @@ public class Game : SceneBehaviourBase
         Play,
         GameOver,
         Clear,
+        Retry,
+        ToTitle,
+        NextStage,
+        SceneDone,
     }
 
     SimpleState<State> state = new(State.None);
@@ -60,7 +64,43 @@ public class Game : SceneBehaviourBase
             case State.Clear:
                 StartCoroutine(ShowOverlapScene("Clear"));
                 break;
+
+            case State.Retry:
+                Debug.Log($"Retry");
+                break;
+
+            case State.ToTitle:
+                Debug.Log($"ToTitle");
+                break;
+
+            case State.NextStage:
+                Debug.Log($"NextStage");
+                break;
         }
+    }
+
+    /// <summary>
+    /// タイトル切り替えを要求する。
+    /// </summary>
+    public void RequestToTitle()
+    {
+        state.SetNextState(State.ToTitle);
+    }
+
+    /// <summary>
+    /// リトライを要求する。
+    /// </summary>
+    public void RequestRetry()
+    {
+        state.SetNextState(State.Retry);
+    }
+
+    /// <summary>
+    /// 次のステージへの切り替えを要求する。
+    /// </summary>
+    public void RequestNextStage()
+    {
+        state.SetNextState(State.NextStage);
     }
 
     /// <summary>
@@ -73,7 +113,8 @@ public class Game : SceneBehaviourBase
         yield return null;
 
         var overlap = FindObjectOfType<OverlapScene>();
-        overlap.Show();        
+        overlap.SetGameInstance(this);
+        overlap.Show();
     }
 
     void UpdateState()

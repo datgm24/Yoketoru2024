@@ -20,13 +20,24 @@ public class OverlapScene : MonoBehaviour
     /// </summary>
     protected bool canControl;
 
+    protected Game gameInstance;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
     /// <summary>
-    /// クレジット画面を表示
+    /// ゲームのインスタンスを渡す。
+    /// </summary>
+    /// <param name="game">ゲーム操作インスタンス</param>
+    public void SetGameInstance(Game game)
+    {
+        gameInstance = game;
+    }
+
+    /// <summary>
+    /// 画面を表示。ゲームのインスタンスを受け取る。
     /// </summary>
     public void Show()
     {
