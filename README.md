@@ -21,7 +21,7 @@
 2. Unityの対象バージョンで開く
 3. プロジェクトを開いたら、Windowメニューから、TextMeshPro > Import TMP Essential Resourcesを選択して、基本リソースをインポートする
 4. Gameビューの解像度設定を、16:9か、960x540にする
-5. ProjectメニューのDAT/Scenesフォルダーから、GamePlayシーンを開く
+5. ProjectメニューのAssets/TANAKAYu/Scenesフォルダーから、Titleシーンを開く
 
 以上で、Playできます。
 
