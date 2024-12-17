@@ -26,6 +26,18 @@ public class Game : SceneBehaviourBase
     }
 
     SimpleState<State> state = new(State.None);
+    Player player;
+    Player PlayerInstance
+    {
+        get
+        {
+            if (player == null)
+            {
+                player = FindObjectOfType<Player>();
+            }
+            return player;
+        }
+    }
 
     public override void StartScene(GameSystem gameSystem)
     {
@@ -60,6 +72,10 @@ public class Game : SceneBehaviourBase
                 state.SetNextState(State.Play);
                 break;
 
+            case State.Play:
+                PlayerInstance.GameStart();
+                break;
+
             case State.GameOver:
                 StartCoroutine(ShowOverlapScene("GameOver"));
                 break;
@@ -69,7 +85,8 @@ public class Game : SceneBehaviourBase
                 break;
 
             case State.Retry:
-                Debug.Log($"Retry");
+                PlayerInstance.Restart();
+                state.SetNextState(State.CountDown);
                 break;
 
             case State.ToTitle:
