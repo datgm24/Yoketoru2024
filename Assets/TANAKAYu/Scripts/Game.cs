@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : SceneBehaviourBase
 {
@@ -53,11 +54,11 @@ public class Game : SceneBehaviourBase
                 break;
 
             case State.GameOver:
-                StartCoroutine(ShowGameOver());
+                StartCoroutine(ShowOverlapScene("GameOver"));
                 break;
 
             case State.Clear:
-                StartCoroutine(ShowClear());
+                StartCoroutine(ShowOverlapScene("Clear"));
                 break;
         }
     }
@@ -65,17 +66,14 @@ public class Game : SceneBehaviourBase
     /// <summary>
     /// ゲームオーバー表示
     /// </summary>
-    IEnumerator ShowGameOver()
+    IEnumerator ShowOverlapScene(string sceneName)
     {
+        var async = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        yield return async;
         yield return null;
-    }
 
-    /// <summary>
-    /// クリア表示
-    /// </summary>
-    IEnumerator ShowClear()
-    {
-        yield return null;
+        var overlap = FindObjectOfType<OverlapScene>();
+        overlap.Show();        
     }
 
     void UpdateState()

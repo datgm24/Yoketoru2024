@@ -134,14 +134,13 @@ GameObject:
   - component: {fileID: 13528781}
   - component: {fileID: 13528783}
   - component: {fileID: 13528782}
-  - component: {fileID: 13528784}
   m_Layer: 5
   m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &13528781
 RectTransform:
   m_ObjectHideFlags: 0
@@ -151,7 +150,7 @@ RectTransform:
   m_GameObject: {fileID: 13528780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1162831932}
@@ -192,7 +191,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4287032063
-  m_fontColor: {r: 1, g: 0.91850793, b: 0.5235849, a: 1}
+  m_fontColor: {r: 1, g: 0.91850793, b: 0.5235849, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -259,26 +258,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13528780}
   m_CullTransparentMesh: 1
---- !u!95 &13528784
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 13528780}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bc3f2a7fe590f4a42a22227bc4195986, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &100351893
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,9 +267,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 100351894}
-  - component: {fileID: 100351897}
-  - component: {fileID: 100351896}
   - component: {fileID: 100351895}
+  - component: {fileID: 100351896}
   m_Layer: 0
   m_Name: ClearManager
   m_TagString: Untagged
@@ -309,7 +287,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1162831932}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -322,34 +301,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 100351893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef16068c757d19a4abe4b0f937171216, type: 3}
+  m_Script: {fileID: 11500000, guid: 0900d012c4727eb45a986f7f7a0b3381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &100351896
-MonoBehaviour:
+--- !u!95 &100351896
+Animator:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100351893}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d3e585638c44f44897b2630e181ae8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nextScene: Title
---- !u!114 &100351897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100351893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eceae7dd32b9eef49bcf3201e4574d61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: ca805bee80bb24844aedc4517d6e2b41, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1162831928
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,8 +418,8 @@ RectTransform:
   m_Children:
   - {fileID: 1770795036}
   - {fileID: 13528781}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 100351894}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -535,7 +509,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 100351896}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ToNextScene, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 1
