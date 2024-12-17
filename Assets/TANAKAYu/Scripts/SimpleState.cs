@@ -12,10 +12,11 @@ public sealed class SimpleState<T> where T : Enum
     /// <summary>
     /// None値
     /// </summary>
-    T none = (T)Enum.Parse(typeof(T), "-1");
+    T none;
 
-    public SimpleState()
+    public SimpleState(T noneValue)
     {
+        none = noneValue;
         CurrentState = none;
         nextState = none;
     }

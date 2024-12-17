@@ -17,7 +17,7 @@ public class Game : SceneBehaviourBase
         Clear,
     }
 
-    SimpleState<State> state = new();
+    SimpleState<State> state = new(State.None);
 
     public override void StartScene(GameSystem gameSystem)
     {
