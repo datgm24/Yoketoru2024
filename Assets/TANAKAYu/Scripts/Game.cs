@@ -9,6 +9,9 @@ public class Game : SceneBehaviourBase
 {
     static float StartUncoverSeconds => 1f;
 
+    static float ToTitleSeconds => 1f;
+    static Color ToTitleColor => Color.black;
+
     enum State
     {
         None = -1,
@@ -70,13 +73,33 @@ public class Game : SceneBehaviourBase
                 break;
 
             case State.ToTitle:
-                Debug.Log($"ToTitle");
+                StartCoroutine(ToTitleCoroutine());
                 break;
 
             case State.NextStage:
                 Debug.Log($"NextStage");
                 break;
         }
+    }
+
+    /// <summary>
+    /// タイトルへ切り替える。
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator ToTitleCoroutine()
+    {
+        string[] loadScenes =
+        {
+            "Title"
+        };
+        string[] unloadScenes =
+        {
+            "Game",
+            GameSystem.Stage.StageSceneName,
+            "GameOver",
+        };
+        yield return GameSystem.Fade.Cover(ToTitleColor, ToTitleSeconds);
+        GameSystem.SceneChanger.ChangeScene(loadScenes, unloadScenes);
     }
 
     /// <summary>
