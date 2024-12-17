@@ -58,6 +58,7 @@ public class OverlapScene : MonoBehaviour
     /// </summary>
     public void OnShowed()
     {
+        Debug.Log($"OnShowed");
         canControl = true;
     }
 

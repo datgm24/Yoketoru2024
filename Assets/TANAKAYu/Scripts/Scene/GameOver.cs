@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver : OverlapScene
 {
@@ -84,5 +85,6 @@ public class GameOver : OverlapScene
     void ToRetry()
     {
         gameInstance.RequestRetry();
+        SceneManager.UnloadSceneAsync("GameOver");
     }
 }
