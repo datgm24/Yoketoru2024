@@ -34,6 +34,6 @@
 ## License
 
 - Assets/Kenney, Assets/Kenney Assets. https://kenney.nl CC0ライセンス
-- [Assets/MPLUS_FONTS](https://mplusfonts.github.io). [SIL OPEN FONT LICENSE Version 1.1](Assets/MPLUS_FONTS/OFL.txt)
-- [Assets/Reggae/README.md](https://github.com/fontworks-fonts/Reggae). [SIL OPEN FONT LICENSE Version 1.1](Assets/Reggae/OFL.txt)
+- [MPLUS_FONTS](https://mplusfonts.github.io). [SIL OPEN FONT LICENSE Version 1.1](Assets/MPLUS_FONTS/OFL.txt)
+- [Reggae](https://github.com/fontworks-fonts/Reggae). [SIL OPEN FONT LICENSE Version 1.1](Assets/Reggae/OFL.txt)
 - Assets/TANAKAYU. [MIT License](LICENSE)
