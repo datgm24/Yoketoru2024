@@ -9,18 +9,24 @@ using UnityEngine.Events;
 /// </summary>
 public class CountDown : MonoBehaviour
 {
+    [HideInInspector]
     public UnityEvent GameStarted = new();
 
-    TextMeshProUGUI countDownText;
-    Animator animator;
+    /// <summary>
+    /// スケールの設定
+    /// </summary>
+    static float StartScale = 4f;
+    static float JustScale = 1f;
 
-    int count = 3;
-    TinyAudio tinyAudio;
+    TextMeshProUGUI countDownText;
 
     private void Awake()
     {
         countDownText = GetComponent<TextMeshProUGUI>();
-        countDownText.text = $"{count}";
+        Color color = countDownText.color;
+        color.a = 0;
+        countDownText.color = color;
+        countDownText.text = $"3";
     }
 
     /// <summary>
@@ -28,40 +34,42 @@ public class CountDown : MonoBehaviour
     /// </summary>
     public void StartCountDown(TinyAudio audio)
     {
-        GetComponent<Animator>().SetTrigger("CountDown");
-        tinyAudio = audio;
+        StartCoroutine(CountDownCoroutine(audio));
     }
 
     /// <summary>
-    /// アニメから、テキストを入れ替える
+    /// カウントダウンの進行
     /// </summary>
-    public void ChangeText()
+    /// <param name="tinyAudio">効果音</param>
+    IEnumerator CountDownCoroutine(TinyAudio tinyAudio)
     {
-        count--;
-        if (count > 0)
+        for (int i=3;i>=1;i--)
         {
-            countDownText.text = $"{count}";
+            yield return Animation($"{i}");
+            tinyAudio.PlaySE(TinyAudio.SE.CountDown);
         }
-        else
-        {
-            countDownText.text = "START!!";
-        }
-    }
 
-    /// <summary>
-    /// カウントダウンの効果音
-    /// </summary>
-    public void CountDownSE()
-    {
-        tinyAudio.PlaySE(TinyAudio.SE.CountDown);
-    }
-
-    /// <summary>
-    /// ゲーム開始
-    /// </summary>
-    public void GameStart()
-    {
+        // Go
+        yield return Animation("START!!");
         tinyAudio.PlaySE(TinyAudio.SE.StartPlay);
         GameStarted.Invoke();
+    }
+
+    IEnumerator Animation(string text)
+    {
+        float time = 0;
+        Color color = countDownText.color;
+        while (time < 1f)
+        {
+            yield return null;
+            countDownText.text = text;
+            time += Time.deltaTime;
+            color.a = time < 1f ? time : 1f;
+            countDownText.color = color;
+            countDownText.transform.localScale = Mathf.Lerp(StartScale, JustScale, color.a) * Vector3.one;
+        }
+        color.a = 1;
+        countDownText.color = color;
+        countDownText.transform.localScale = JustScale * Vector3.one;
     }
 }
