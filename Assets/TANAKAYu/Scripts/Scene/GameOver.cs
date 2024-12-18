@@ -40,6 +40,7 @@ public class GameOver : OverlapScene
                 break;
 
             case State.Retry:
+                gameInstance.GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Start);
                 Hided.AddListener(ToRetry);
                 Hide();
                 break;

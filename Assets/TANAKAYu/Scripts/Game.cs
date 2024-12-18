@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Game : SceneBehaviourBase
 {
+    [SerializeField]
+    AudioSource bgmAudioSource = default;
+
     static float StartUncoverSeconds => 1f;
 
     // タイトルへ
@@ -82,14 +85,19 @@ public class Game : SceneBehaviourBase
                 break;
 
             case State.Play:
+                bgmAudioSource.Play();
                 PlayerInstance.GameStart();
                 break;
 
             case State.GameOver:
+                bgmAudioSource.Stop();
+                GameSystem.TinyAudio.PlaySE(TinyAudio.SE.GameOver);
                 StartCoroutine(ShowOverlapScene("GameOver"));
                 break;
 
             case State.Clear:
+                bgmAudioSource.Stop();
+                GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Clear);
                 StartCoroutine(ShowOverlapScene("Clear"));
                 break;
 
@@ -99,10 +107,12 @@ public class Game : SceneBehaviourBase
                 break;
 
             case State.ToTitle:
+                GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Cancel);
                 StartCoroutine(ToTitleCoroutine());
                 break;
 
             case State.NextStage:
+                GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Click);
                 string unloadStage = GameSystem.Stage.StageSceneName;
                 if (GameSystem.Stage.Next())
                 {

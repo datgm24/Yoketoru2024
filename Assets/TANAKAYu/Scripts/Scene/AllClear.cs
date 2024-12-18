@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class AllClear : SceneBehaviourBase
 {
-    static float UncoverSeconds => 2f;
+    [SerializeField]
+    AudioSource bgmAudioSource = default;
 
+    static float UncoverSeconds => 2f;
     static Color ToTitleColor => Color.white;
     static float ToTitleSeconds => 1f;
     enum State
@@ -52,10 +55,12 @@ public class AllClear : SceneBehaviourBase
         switch(state.CurrentState)
         {
             case State.Show:
+                bgmAudioSource.Play();
                 GetComponent<Animator>().SetBool("Show", true);
                 break;
 
             case State.ToTitle:
+                GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Click);
                 StartCoroutine(ToTitle());
                 break;
         }
