@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         InitState();
-        UpdatePlay();
+        UpdateState();
     }
 
     void InitState()
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
         switch(state.CurrentState)
         {
             case State.Play:
-                UpdatePlay();
+                //UpdatePlay();
                 break;
         }
     }
