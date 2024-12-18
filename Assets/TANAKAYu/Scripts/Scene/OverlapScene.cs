@@ -8,6 +8,9 @@ using UnityEngine.Events;
 /// </summary>
 public class OverlapScene : MonoBehaviour
 {
+    [SerializeField]
+    protected TinyAudio tinyAudio = default;
+
     /// <summary>
     /// 表示が消えたら、Invokeするイベント。
     /// </summary>
@@ -58,7 +61,6 @@ public class OverlapScene : MonoBehaviour
     /// </summary>
     public void OnShowed()
     {
-        Debug.Log($"OnShowed");
         canControl = true;
     }
 

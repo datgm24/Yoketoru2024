@@ -121,6 +121,7 @@ public class Title : SceneBehaviourBase
             credits.Hided.AddListener(OnCreditsHided);
         }
 
+        GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Click);
         credits.Show();
     }
 
@@ -152,6 +153,7 @@ public class Title : SceneBehaviourBase
     /// </summary>
     IEnumerator GameStart()
     {
+        GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Start);
         GameSystem.Stage.Start();
 
         yield return GameSystem.Fade.Cover(CoverColor, CoverSeconds);

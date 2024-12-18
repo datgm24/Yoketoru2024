@@ -7,11 +7,15 @@ https://kenney.nl/
   - Audio/Music Loops/Loops/Farm Frolics
 - GAME
   - Audio/Music Loops/Loops/Italian Mom
+- ALL CLEAR
+  - Audio/Music Loops/Loops/Night at the Beach
 
 ## SE
 
 - クリック音
   - Audio/Interface Sounds/Audio/drop_003
+- キャンセル
+  - Audio/Interface Sounds/Audio/switch_002
 - ゲーム開始音
   - Audio/Interface Sounds/Audio/confirmation_002
 - プレイヤーが画面端にぶつかった音

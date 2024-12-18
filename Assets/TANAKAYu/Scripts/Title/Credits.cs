@@ -12,6 +12,7 @@ public class Credits : OverlapScene
         // 閉じるチェック
         if (Input.GetButtonDown("Cancel"))
         {
+            tinyAudio.PlaySE(TinyAudio.SE.Cancel);
             Hide();
         }
     }

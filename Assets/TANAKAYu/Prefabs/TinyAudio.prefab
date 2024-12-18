@@ -47,12 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seList:
   - {fileID: 8300000, guid: e952bab43f7028f43be269a38e3c2d02, type: 3}
+  - {fileID: 8300000, guid: 0ece64e7330819b40bc25fce09a1e24b, type: 3}
   - {fileID: 8300000, guid: ac5c255d61940fb459d209a9cc846b3d, type: 3}
   - {fileID: 8300000, guid: cf8cc03bfd5b5b540af2910cf9735a84, type: 3}
   - {fileID: 8300000, guid: 65d5f467150d07544b2e02e5a109ae24, type: 3}
   - {fileID: 8300000, guid: f82a0508dc9a3774da6f72e673bc79a8, type: 3}
   - {fileID: 8300000, guid: c86a22b381f5adb479712d85cd735232, type: 3}
-  - {fileID: 8300000, guid: a53bfd2128be0c847a830c132ae3a352, type: 3}
+  - {fileID: 8300000, guid: ced223f49c00cc7498f9a423e2f67656, type: 3}
 --- !u!82 &2343407471680206378
 AudioSource:
   m_ObjectHideFlags: 0
@@ -63,8 +64,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 497334ff9bb21bf4596285baec3688ab, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

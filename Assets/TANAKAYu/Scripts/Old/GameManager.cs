@@ -7,11 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    void Start()
-    {
-        TinyAudio.PlaySE(TinyAudio.SE.Start);
-    }
-
     // Update is called once per frame
     void Update()
     {

@@ -25,6 +25,22 @@ public class GameSystem : MonoBehaviour
     /// </summary>
     public Stage Stage { get; private set; } = new();
 
+    TinyAudio tinyAudio;
+    /// <summary>
+    /// 効果音再生クラス
+    /// </summary>
+    public TinyAudio TinyAudio
+    {
+        get
+        {
+            if (tinyAudio == null)
+            {
+                tinyAudio = FindObjectOfType<TinyAudio>();
+            }
+            return tinyAudio;
+        }
+    }
+
     readonly string[] loadTitleScene =
     {
         "Title",
