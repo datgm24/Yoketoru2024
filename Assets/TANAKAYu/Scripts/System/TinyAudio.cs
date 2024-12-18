@@ -14,6 +14,8 @@ public class TinyAudio : MonoBehaviour
         Miss,
         GameOver,
         Clear,
+        CountDown,
+        StartPlay,
     }
     [Tooltip("効果音のAudio Clipを、SEの列挙子と同じ順番で設定してください。"), SerializeField]
     AudioClip[] seList;

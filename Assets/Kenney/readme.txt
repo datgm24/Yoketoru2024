@@ -28,3 +28,8 @@ https://kenney.nl/
   - Audio/Digital Audio/Audio/laser1
 - クリア
   - Audio/Music Loops/Idents/Polka ident
+- カウントダウン
+  - Audio/Digital Audio/Audio/zap2
+- プレイ開始
+  - Audio/Digital Audio/Audio/zap1
+

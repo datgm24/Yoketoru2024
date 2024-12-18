@@ -9,6 +9,8 @@ public class Game : SceneBehaviourBase
 {
     [SerializeField]
     AudioSource bgmAudioSource = default;
+    [SerializeField]
+    CountDown countDown = default;
 
     static float StartUncoverSeconds => 1f;
 
@@ -80,11 +82,12 @@ public class Game : SceneBehaviourBase
         switch (state.CurrentState)
         {
             case State.CountDown:
-                Debug.Log($"カウントダウン");
-                state.SetNextState(State.Play);
+                countDown.StartCountDown(GameSystem.TinyAudio);
+                countDown.GameStarted.AddListener(() => state.SetNextState(State.Play));
                 break;
 
             case State.Play:
+                countDown.GameStarted.RemoveAllListeners();
                 bgmAudioSource.Play();
                 PlayerInstance.GameStart();
                 break;
