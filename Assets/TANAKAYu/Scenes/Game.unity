@@ -702,6 +702,7 @@ GameObject:
   - component: {fileID: 1762991010}
   - component: {fileID: 1762991008}
   - component: {fileID: 1762991007}
+  - component: {fileID: 1762991011}
   m_Layer: 5
   m_Name: CountDown
   m_TagString: Untagged
@@ -841,6 +842,26 @@ MonoBehaviour:
   GameStarted:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &1762991011
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762991005}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f85cb356d7ac0c418b10b6dfa219e9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2057363274
 GameObject:
   m_ObjectHideFlags: 0

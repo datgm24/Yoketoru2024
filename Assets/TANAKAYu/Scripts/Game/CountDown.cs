@@ -19,9 +19,13 @@ public class CountDown : MonoBehaviour
     static float JustScale = 1f;
 
     TextMeshProUGUI countDownText;
+    Animator animator;
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
+
         countDownText = GetComponent<TextMeshProUGUI>();
         Color color = countDownText.color;
         color.a = 0;
@@ -53,6 +57,9 @@ public class CountDown : MonoBehaviour
         yield return Animation("START!!");
         tinyAudio.PlaySE(TinyAudio.SE.StartPlay);
         GameStarted.Invoke();
+
+        animator.enabled = true;
+        animator.SetTrigger("Hide");
     }
 
     IEnumerator Animation(string text)
