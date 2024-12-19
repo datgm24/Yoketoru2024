@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameSystem : MonoBehaviour
 {
+    static int ScoreMax => 999999;
+
     [SerializeField]
     Fade fade = default;
     [SerializeField]
@@ -19,6 +21,13 @@ public class GameSystem : MonoBehaviour
     /// シーン切り替え処理を提供するクラス。
     /// </summary>
     public SceneChanger SceneChanger => sceneChanger;
+
+    /// <summary>
+    /// 点数クラス
+    /// </summary>
+    public Score Score { get; private set; } = new(ScoreMax);
+
+    public GameTime GameTime { get; private set; } = new();
 
     /// <summary>
     /// ステージ数

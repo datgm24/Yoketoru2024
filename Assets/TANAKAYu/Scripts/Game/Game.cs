@@ -4,9 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Game : SceneBehaviourBase
 {
+    /// <summary>
+    /// 開始秒数
+    /// </summary>
+    static float StartGameTime => 99.99f;
+
     [SerializeField]
     AudioSource bgmAudioSource = default;
     [SerializeField]
@@ -54,12 +60,51 @@ public class Game : SceneBehaviourBase
     }
     StageBehaviour stageBehaviour;
 
+    ScoreText scoreText;
+    StageText stageText;
+    TimeText timeText;
+
     public override void StartScene(GameSystem gameSystem)
     {
         base.StartScene(gameSystem);
 
+        // スコアの設定
+        scoreText = FindObjectOfType<ScoreText>();
+        if (scoreText !=  null)
+        {
+            scoreText.OnChanged(gameSystem.Score.Current);
+            gameSystem.Score.Changed.AddListener(scoreText.OnChanged);
+        }
+
+        // ステージの設定
+        stageText = FindObjectOfType<StageText>();
+        if (stageText != null)
+        {
+            stageText.Set(gameSystem.Stage.Current);
+        }
+
+        // タイムの設定
+        timeText = FindObjectOfType<TimeText>();
+        if (timeText != null)
+        {
+            gameSystem.GameTime.Changed.AddListener(timeText.OnChanged);
+            gameSystem.GameTime.Set(StartGameTime);
+        }
+
         stageBehaviour = FindObjectOfType<StageBehaviour>();
         StartCoroutine(GameStartCoroutine());
+    }
+
+    private void OnDestroy()
+    {
+        if (scoreText != null)
+        {
+            GameSystem.Score.Changed.RemoveListener(scoreText.OnChanged);
+        }
+        if (timeText != null)
+        {
+            GameSystem.GameTime.Changed.RemoveListener(timeText.OnChanged);
+        }
     }
 
     IEnumerator GameStartCoroutine()
@@ -70,9 +115,14 @@ public class Game : SceneBehaviourBase
 
     private void Update()
     {
-        InitState();
         UpdateState();
         HideMouseCursor();
+    }
+
+    private void FixedUpdate()
+    {
+        InitState();
+        FixedUpdateState();
     }
 
     void HideMouseCursor()
@@ -124,6 +174,8 @@ public class Game : SceneBehaviourBase
                 break;
 
             case State.Retry:
+                GameSystem.Score.Clear();
+                GameSystem.GameTime.Set(StartGameTime);
                 PlayerInstance.Restart();
                 state.SetNextState(State.CountDown);
                 break;
@@ -272,14 +324,19 @@ public class Game : SceneBehaviourBase
         switch (state.CurrentState)
         {
             case State.Play:
-                UpdatePlay();
+                UpdateDebugKey();
                 break;
         }
     }
 
-    void UpdatePlay()
+    void FixedUpdateState()
     {
-        UpdateDebugKey();
+        switch(state.CurrentState)
+        {
+            case State.Play:
+                GameSystem.GameTime.Update(Time.deltaTime);
+                break;
+        }
     }
 
     [System.Diagnostics.Conditional("DEBUG_KEY")]
@@ -292,6 +349,10 @@ public class Game : SceneBehaviourBase
         else if (Input.GetButtonDown("DebugClear"))
         {
             RequestClear();
+        }
+        else if (Input.GetButtonDown("Submit"))
+        {
+            GameSystem.Score.Add(100);
         }
     }
 }
