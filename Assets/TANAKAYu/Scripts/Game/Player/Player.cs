@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -21,6 +22,8 @@ public class Player : MonoBehaviour
     SimpleState<State> state = new(State.None);
     Vector3 startPosition;
     Vector3 startEuler;
+    IInput mouseInput = new MouseInput();
+    IInput controllerInput = new ControllerInput();
 
     private void Awake()
     {
@@ -34,11 +37,16 @@ public class Player : MonoBehaviour
         cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
     }
 
+    private void Update()
+    {
+        UpdateState();
+    }
+
     // FixedUpdate = 物理処理をするための固定更新処理
     void FixedUpdate()
     {
         InitState();
-        UpdateState();
+        FixedUpdateState();
     }
 
     void InitState()
@@ -62,32 +70,35 @@ public class Player : MonoBehaviour
         switch(state.CurrentState)
         {
             case State.Play:
-                //UpdatePlay();
+                mouseInput.Update();
+                controllerInput.Update();
                 break;
         }
     }
 
-    void UpdatePlay()
+    void FixedUpdateState()
     {
-        var mp = Input.mousePosition;
-        mp.z = cameraDistance;
-        var wp = Camera.main.ScreenToWorldPoint(mp);
-
-        var to = wp - rb.position;
-        if (to.magnitude < 0.01f)
+        switch(state.CurrentState)
         {
-            rb.velocity = Vector3.zero;
+            case State.Play:
+                FixedUpdatePlay();
+                break;
         }
-        else
-        {
-            float step = speed * Time.deltaTime;
-            float dist = Mathf.Min(to.magnitude, step);
-            float v = dist / Time.deltaTime;
-            rb.velocity = v * to.normalized;
-        }
+    }
 
-        //transform.position = wp;
-        //Debug.Log(wp);
+    void FixedUpdatePlay()
+    {
+        Vector2 moveInput = controllerInput.MoveInput;
+        if (Mathf.Approximately(moveInput.magnitude, 0f))
+        {
+            // キーやコントローラーの入力がない場合、マウスの入力を使う
+            moveInput = mouseInput.MoveInput;
+        }
+        controllerInput.Clear();
+        mouseInput.Clear();
+
+        // TODO 移動
+
     }
 
     /// <summary>
