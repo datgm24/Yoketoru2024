@@ -106,7 +106,7 @@ public class Game : SceneBehaviourBase
                 countDown.GameStarted.RemoveAllListeners();
                 bgmAudioSource.Play();
                 stageBehaviour.CallGameStart();
-                PlayerInstance.GameStart();
+                PlayerInstance.GameStart(this);
                 break;
 
             case State.GameOver:
@@ -238,6 +238,22 @@ public class Game : SceneBehaviourBase
     }
 
     /// <summary>
+    /// ゲームオーバーを要求
+    /// </summary>
+    public void RequestGameOver()
+    {
+        state.SetNextState(State.GameOver);
+    }
+
+    /// <summary>
+    /// クリアを要求。
+    /// </summary>
+    public void RequestClear()
+    {
+        state.SetNextStateForce(State.Clear);
+    }
+
+    /// <summary>
     /// ゲームオーバー表示
     /// </summary>
     IEnumerator ShowOverlapScene(string sceneName)
@@ -271,11 +287,11 @@ public class Game : SceneBehaviourBase
     {
         if (Input.GetButtonDown("DebugGameOver"))
         {
-            state.SetNextState(State.GameOver);
+            RequestGameOver();
         }
         else if (Input.GetButtonDown("DebugClear"))
         {
-            state.SetNextState(State.Clear);
+            RequestClear();
         }
     }
 }

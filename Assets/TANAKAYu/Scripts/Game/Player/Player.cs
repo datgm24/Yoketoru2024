@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     enum State
     {
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     IInput mouseInput = new MouseInput();
     IInput controllerInput = new ControllerInput();
     IMover mover;
+    Game gameInstance;
 
     private void Awake()
     {
@@ -42,6 +43,31 @@ public class Player : MonoBehaviour
         FixedUpdateState();
     }
 
+    /// <summary>
+    /// ゲームが開始して、操作可能になったら、Gameから呼び出す。
+    /// </summary>
+    public void GameStart(Game game)
+    {
+        gameInstance = game;
+        state.SetNextState(State.Play);
+    }
+
+    /// <summary>
+    /// リスタート
+    /// </summary>
+    public void Restart()
+    {
+        state.SetNextState(State.Restart);
+    }
+
+    public void Damage()
+    {
+        if (state.CurrentState == State.Play)
+        {
+            state.SetNextState(State.Miss);
+        }
+    }
+
     void InitState()
     {
         if (!state.ChangeState())
@@ -59,6 +85,10 @@ public class Player : MonoBehaviour
                 break;
 
             case State.Miss:
+                gameInstance.RequestGameOver();
+                mover.Move(Vector2.zero);
+                break;
+
             case State.Clear:
                 mover.Move(Vector2.zero);
                 break;
@@ -99,21 +129,5 @@ public class Player : MonoBehaviour
 
         // 移動
         mover.Move(moveInput);
-    }
-
-    /// <summary>
-    /// ゲームが開始して、操作可能になったら、Gameから呼び出す。
-    /// </summary>
-    public void GameStart()
-    {
-        state.SetNextState(State.Play);
-    }
-
-    /// <summary>
-    /// リスタート
-    /// </summary>
-    public void Restart()
-    {
-        state.SetNextState(State.Restart);
     }
 }
