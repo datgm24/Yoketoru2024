@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
         None = -1,
         Play,
         Restart,
+        Miss,
+        Clear,
     }
 
     float cameraDistance = 0;
