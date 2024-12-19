@@ -432,9 +432,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u3088\u3051\u3068\u308B2024\nCREDITS\n\n\n- \u4F01\u753B -\n\u305F\u306A\u304B\u3086\u3046\n\n\n-
-    \u958B\u767A -\n\u305F\u306A\u304B\u3086\u3046\n\n\n- \u30B0\u30E9\u30D5\u30A3\u30C3\u30AF/\u97F3\u6E90
-    -\nKenney.nl"
+  m_text: "\u3088\u3051\u3068\u308B2024\n- CREDITS -\n\n\n\u4F01\u753B\u30FB\u958B\u767A\n\u305F\u306A\u304B\u3086\u3046\n\n\n\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF/BGM/SE\nkenney.nl\n\n\n\u30D5\u30A9\u30F3\u30C8\nThe
+    M+ FONTS Project Authors\nFontworks Inc.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b063006878ddac4f8b6bbe10bddf00b, type: 2}
   m_sharedMaterial: {fileID: -1106618701260001517, guid: 1b063006878ddac4f8b6bbe10bddf00b, type: 2}
