@@ -8,7 +8,7 @@ using UnityEngine;
 public class ControllerInput : IInput
 {
     Vector2 move;
-    public Vector2 MoveInput => currentSpeed * move.normalized / maxSpeed;
+    public Vector2 MoveInput => currentSpeed * move / maxSpeed;
 
     float normalSpeed = 4f;
     float highSpeed = 8f;
@@ -23,13 +23,21 @@ public class ControllerInput : IInput
 
     public void Update()
     {
-        Vector2 currentInput = Vector2.zero;
-        currentInput.Set(
+        Vector2 digitalInput = Vector2.zero;
+        digitalInput.Set(
             Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical"));
-        if (currentInput.magnitude > move.magnitude)
+            -Input.GetAxisRaw("Vertical"));
+        digitalInput = digitalInput.normalized;
+
+        Vector2 analogInput = Vector2.zero;
+        analogInput.Set(
+            Input.GetAxis("HorizontalAnalog"),
+            -Input.GetAxis("VerticalAnalog"));
+
+        Vector2 newInput = (digitalInput.magnitude > analogInput.magnitude) ? digitalInput : analogInput;
+        if (newInput.magnitude > move.magnitude)
         {
-            move = currentInput;
+            move = newInput;
         }
 
         // スピードチェック

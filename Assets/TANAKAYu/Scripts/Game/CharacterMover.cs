@@ -25,7 +25,7 @@ public class CharacterMover : MonoBehaviour, IMover
     /// </summary>
     void UpdateForward(Vector2 move)
     {
-        if (move.magnitude < 0.1f)
+        if (Mathf.Approximately(move.magnitude, 0f))
         {
             return;
         }
