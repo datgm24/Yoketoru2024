@@ -52,11 +52,13 @@ public class Game : SceneBehaviourBase
             return player;
         }
     }
+    StageBehaviour stageBehaviour;
 
     public override void StartScene(GameSystem gameSystem)
     {
         base.StartScene(gameSystem);
 
+        stageBehaviour = FindObjectOfType<StageBehaviour>();
         StartCoroutine(GameStartCoroutine());
     }
 
@@ -103,18 +105,21 @@ public class Game : SceneBehaviourBase
             case State.Play:
                 countDown.GameStarted.RemoveAllListeners();
                 bgmAudioSource.Play();
+                stageBehaviour.CallGameStart();
                 PlayerInstance.GameStart();
                 break;
 
             case State.GameOver:
                 bgmAudioSource.Stop();
                 GameSystem.TinyAudio.PlaySE(TinyAudio.SE.GameOver);
+                stageBehaviour.CallGameOver();
                 StartCoroutine(ShowOverlapScene("GameOver"));
                 break;
 
             case State.Clear:
                 bgmAudioSource.Stop();
                 GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Clear);
+                stageBehaviour.CallClear();
                 StartCoroutine(ShowOverlapScene("Clear"));
                 break;
 
