@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour, IGameStateListener
 {
+    [SerializeField]
+    Explosion explosionPrefab = default(Explosion);
+
     enum State
     {
         None = -1,
@@ -20,7 +23,7 @@ public class Bomb : MonoBehaviour, IGameStateListener
         attacker = GetComponent<IAttackable>();
         if (attacker != null)
         {
-            attacker.Attacked.AddListener(Explosion);
+            attacker.Attacked.AddListener(OnExplosion);
         }
     }
 
@@ -45,6 +48,13 @@ public class Bomb : MonoBehaviour, IGameStateListener
         {
             return;
         }
+
+        switch(state.CurrentState)
+        {
+            case State.Explosion:
+                Explosion();
+                break;
+        }
     }
 
     void UpdateState()
@@ -68,15 +78,22 @@ public class Bomb : MonoBehaviour, IGameStateListener
     }
 
     /// <summary>
-    /// 爆発設定
+    /// 爆発処理
     /// </summary>
     void Explosion()
+    {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// 爆発設定
+    /// </summary>
+    void OnExplosion()
     {
         if (state.CurrentState == State.Play)
         {
             state.SetNextStateForce(State.Explosion);
         }
     }
-
-
 }
