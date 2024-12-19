@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Explosion
+    uniqueID: 1799368021
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
