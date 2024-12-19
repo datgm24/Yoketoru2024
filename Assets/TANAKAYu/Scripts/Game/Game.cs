@@ -70,6 +70,20 @@ public class Game : SceneBehaviourBase
     {
         InitState();
         UpdateState();
+        HideMouseCursor();
+    }
+
+    void HideMouseCursor()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Cursor.visible = false;
+        }
+        else if (Input.GetButtonDown("Cancel"))
+        {
+            Cursor.visible = true;
+        }
+        Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     void InitState()
