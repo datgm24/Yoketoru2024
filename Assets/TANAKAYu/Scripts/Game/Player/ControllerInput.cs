@@ -26,13 +26,13 @@ public class ControllerInput : IInput
         Vector2 digitalInput = Vector2.zero;
         digitalInput.Set(
             Input.GetAxisRaw("Horizontal"),
-            -Input.GetAxisRaw("Vertical"));
+            Input.GetAxisRaw("Vertical"));
         digitalInput = digitalInput.normalized;
 
         Vector2 analogInput = Vector2.zero;
         analogInput.Set(
             Input.GetAxis("HorizontalAnalog"),
-            -Input.GetAxis("VerticalAnalog"));
+            Input.GetAxis("VerticalAnalog"));
 
         Vector2 newInput = (digitalInput.magnitude > analogInput.magnitude) ? digitalInput : analogInput;
         if (newInput.magnitude > move.magnitude)

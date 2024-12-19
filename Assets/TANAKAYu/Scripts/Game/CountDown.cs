@@ -47,6 +47,8 @@ public class CountDown : MonoBehaviour
     /// <param name="tinyAudio">効果音</param>
     IEnumerator CountDownCoroutine(TinyAudio tinyAudio)
     {
+        animator.enabled = false;
+
         for (int i=3;i>=1;i--)
         {
             yield return Animation($"{i}");
