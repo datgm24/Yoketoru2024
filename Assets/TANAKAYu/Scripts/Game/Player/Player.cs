@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Tooltip("速さ"), SerializeField]
-    float speed = 20;
-
     enum State
     {
         None = -1,
@@ -17,24 +14,20 @@ public class Player : MonoBehaviour
         Clear,
     }
 
-    float cameraDistance = 0;
     Rigidbody rb;
     SimpleState<State> state = new(State.None);
     Vector3 startPosition;
     Vector3 startEuler;
     IInput mouseInput = new MouseInput();
     IInput controllerInput = new ControllerInput();
+    IMover mover;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        mover = GetComponent<IMover>();
         startPosition = transform.position;
         startEuler = transform.eulerAngles;
-    }
-
-    void Start()
-    {
-        cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
     }
 
     private void Update()
@@ -61,6 +54,13 @@ public class Player : MonoBehaviour
             case State.Restart:
                 transform.position = startPosition;
                 transform.eulerAngles = startEuler;
+                rb.position = startPosition;
+                mover.Move(Vector2.zero);
+                break;
+
+            case State.Miss:
+            case State.Clear:
+                mover.Move(Vector2.zero);
                 break;
         }
     }
@@ -97,8 +97,8 @@ public class Player : MonoBehaviour
         controllerInput.Clear();
         mouseInput.Clear();
 
-        // TODO 移動
-
+        // 移動
+        mover.Move(moveInput);
     }
 
     /// <summary>

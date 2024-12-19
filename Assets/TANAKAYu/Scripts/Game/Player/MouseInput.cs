@@ -5,11 +5,10 @@ using UnityEngine;
 /// </summary>
 public class MouseInput : IInput
 {
-    [SerializeField, Tooltip("最大移動距離")]
-    float magnitudeMax = 100;
+    static float MagnitudeMax => 1f;
 
     Vector2 move = Vector2.zero;
-    public Vector2 MoveInput { get; private set; } = Vector2.zero;
+    public Vector2 MoveInput => move;
 
     public void Clear()
     {
@@ -20,9 +19,9 @@ public class MouseInput : IInput
     {
         move.x += Input.GetAxis("Mouse X");
         move.y += Input.GetAxis("Mouse Y");
-        if (move.magnitude > magnitudeMax)
+        if (move.magnitude > MagnitudeMax)
         {
-            move = move.normalized * magnitudeMax;
+            move = move.normalized * MagnitudeMax;
         }
     }
 }
