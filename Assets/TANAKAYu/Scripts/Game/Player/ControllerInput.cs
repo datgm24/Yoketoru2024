@@ -7,17 +7,35 @@ using UnityEngine;
 /// </summary>
 public class ControllerInput : IInput
 {
-    public Vector2 MoveInput { get; private set; }
+    Vector2 move;
+    public Vector2 MoveInput => currentSpeed * move.normalized / maxSpeed;
+
+    float normalSpeed = 4f;
+    float highSpeed = 8f;
+    float maxSpeed = 20f;
+    float currentSpeed = 0;
 
     public void Clear()
     {
-        MoveInput = Vector2.zero;
+        move = Vector2.zero;
+        currentSpeed = normalSpeed;
     }
 
     public void Update()
     {
-        MoveInput.Set(
-            Input.GetAxis("Horizontal"),
-            Input.GetAxis("Vertical"));
+        Vector2 currentInput = Vector2.zero;
+        currentInput.Set(
+            Input.GetAxisRaw("Horizontal"),
+            Input.GetAxisRaw("Vertical"));
+        if (currentInput.magnitude > move.magnitude)
+        {
+            move = currentInput;
+        }
+
+        // スピードチェック
+        if (Input.GetButton("SpeedUp"))
+        {
+            currentSpeed = highSpeed;
+        }
     }
 }
