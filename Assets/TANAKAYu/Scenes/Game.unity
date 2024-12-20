@@ -505,8 +505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmAudioSource: {fileID: 1292202490}
   countDown: {fileID: 1762991010}
-  scoreText: {fileID: 0}
-  timeText: {fileID: 0}
 --- !u!1 &982811270
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,22 +15,19 @@ public class ReflectionMover : MonoBehaviour, IAutoMover
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
-        rb.velocity = speed * firstDirection.normalized;
     }
 
     public void Move(float delta)
     {
         if (rb.velocity.magnitude < MinimumSpeed)
         {
-            //rb.velocity = speed * firstDirection.normalized;
+            rb.velocity = speed * firstDirection.normalized;
         }
-        /*
         else
         {
             // 速度を維持
             rb.velocity = speed * rb.velocity.normalized;
         }
-        */
     }
 
     public void Stop()
