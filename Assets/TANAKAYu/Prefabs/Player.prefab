@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1455778636719910233}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1455778637240863463}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pirate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 7514519605129355083}
   - component: {fileID: 1455778638414641904}
   - component: {fileID: 1455778638414641907}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,6 +168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: boat_large
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: caf047afad979fa4dbb22353dc122e7e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: caf047afad979fa4dbb22353dc122e7e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -242,9 +246,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1455778637240863463}
     m_Modifications:
+    - target: {fileID: 100000, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
       propertyPath: m_Name
       value: pirate_captain
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 227bfc395272f7647914112a2f2b75b3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -412,6 +448,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: paddleL
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8e44dd71a97b6c5468bde3095759899c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e44dd71a97b6c5468bde3095759899c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -489,6 +529,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 8e44dd71a97b6c5468bde3095759899c, type: 3}
       propertyPath: m_Name
       value: paddleR
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8e44dd71a97b6c5468bde3095759899c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e44dd71a97b6c5468bde3095759899c, type: 3}
       propertyPath: m_RootOrder
