@@ -72,7 +72,7 @@ public class Game : SceneBehaviourBase
 
         // スコアの設定
         scoreText = FindObjectOfType<ScoreText>();
-        if (scoreText !=  null)
+        if (scoreText != null)
         {
             scoreText.OnChanged(gameSystem.Score.Current);
             gameSystem.Score.Changed.AddListener(scoreText.OnChanged);
@@ -92,6 +92,9 @@ public class Game : SceneBehaviourBase
             gameSystem.GameTime.Changed.AddListener(timeText.OnChanged);
             gameSystem.GameTime.Set(StartGameTime);
         }
+
+        // アイテムの数を数える
+        itemCounter.CountItem();
 
         stageBehaviour = FindObjectOfType<StageBehaviour>();
         StartCoroutine(GameStartCoroutine());
@@ -312,14 +315,18 @@ public class Game : SceneBehaviourBase
     /// アイテムの数を減らして、0になったらクリアを呼び出す。
     /// </summary>
     /// <param name="point">基準点</param>
-    public void GotItem(int point)
+    /// <returns>クリア時、trueを返す。</returns>
+    public bool GotItem(int point)
     {
         GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Item);
         GameSystem.Score.Add(Mathf.FloorToInt(point * GameSystem.GameTime.Current));
         if (itemCounter.Decrement())
         {
             RequestClear();
+            return true;
         }
+
+        return false;
     }
 
     /// <summary>
@@ -348,7 +355,7 @@ public class Game : SceneBehaviourBase
 
     void FixedUpdateState()
     {
-        switch(state.CurrentState)
+        switch (state.CurrentState)
         {
             case State.Play:
                 GameSystem.GameTime.Update(Time.deltaTime);

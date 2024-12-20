@@ -75,7 +75,7 @@ public class Player : MonoBehaviour, IDamageable, IGetter
             return;
         }
 
-        switch(state.CurrentState)
+        switch (state.CurrentState)
         {
             case State.Restart:
                 transform.position = startPosition;
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour, IDamageable, IGetter
 
     void UpdateState()
     {
-        switch(state.CurrentState)
+        switch (state.CurrentState)
         {
             case State.Play:
                 mouseInput.Update();
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour, IDamageable, IGetter
 
     void FixedUpdateState()
     {
-        switch(state.CurrentState)
+        switch (state.CurrentState)
         {
             case State.Play:
                 FixedUpdatePlay();
@@ -137,6 +137,9 @@ public class Player : MonoBehaviour, IDamageable, IGetter
     /// <param name="point">基準点</param>
     public void Get(int point)
     {
-        gameInstance.GotItem(point);
+        if (gameInstance.GotItem(point))
+        {
+            state.SetNextStateForce(State.Clear);
+        }
     }
 }

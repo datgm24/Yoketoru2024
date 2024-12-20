@@ -5,9 +5,15 @@ using UnityEngine;
 /// </summary>
 public class ItemCounter
 {
+    int count;
+
+    /// <summary>
+    /// アイテムタグのオブジェクトを数える。
+    /// </summary>
     public void CountItem()
     {
-        Debug.Log($"アイテムを数える");
+        var items = GameObject.FindGameObjectsWithTag("Item");
+        count = items.Length;
     }
 
     /// <summary>
@@ -16,6 +22,7 @@ public class ItemCounter
     /// <returns>全部取り切っていたら、trueを返す。</returns>
     public bool Decrement()
     {
-        return false;
+        count--;
+        return (count <= 0);
     }
 }
