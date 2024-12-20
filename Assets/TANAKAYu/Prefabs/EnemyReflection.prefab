@@ -178,7 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d7c56fb5b559444abd94f88cc18c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 5900383519871168932, guid: b96fed53c5410a84dbc0aa72b2c0da4d, type: 3}
 --- !u!114 &928065031578649225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9efd5884813d344a9ee35a5f8e0b9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 5900383519871168932, guid: b96fed53c5410a84dbc0aa72b2c0da4d, type: 3}
 --- !u!114 &203181708319365563
 MonoBehaviour:
   m_ObjectHideFlags: 0

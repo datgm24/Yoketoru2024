@@ -67,7 +67,7 @@ public class WayPointMover : MonoBehaviour, IAutoMover
             moveVector = moveStep * toTarget.normalized;
         }
 
-        rb.velocity = moveVector / delta;
+        rb.MovePosition(rb.position + moveVector);
     }
 
     /// <summary>

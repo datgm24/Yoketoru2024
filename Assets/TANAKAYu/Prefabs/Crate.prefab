@@ -106,8 +106,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5500034368581492873}
+  - component: {fileID: 8122809230916901918}
+  - component: {fileID: 5279014353873686554}
   - component: {fileID: 5436496229509671234}
-  - component: {fileID: 1024318870}
   m_Layer: 6
   m_Name: Crate
   m_TagString: Untagged
@@ -132,6 +133,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8122809230916901918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500034368581492870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d7c56fb5b559444abd94f88cc18c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5279014353873686554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500034368581492870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0ed311c34757545b4def37c4bc2ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  wayPoints: []
+  type: 0
+  startNextIndex: 0
 --- !u!54 &5436496229509671234
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,18 +177,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &1024318870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5500034368581492870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7d37ed941047a43bf6a4832c6674a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5500034367978254039
 PrefabInstance:
   m_ObjectHideFlags: 0

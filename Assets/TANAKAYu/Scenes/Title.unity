@@ -2747,6 +2747,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1694102996}
     m_Modifications:
+    - target: {fileID: 5279014353873686554, guid: 5c32b90952d11f44496c712ba9de793a, type: 3}
+      propertyPath: startNextIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279014353873686554, guid: 5c32b90952d11f44496c712ba9de793a, type: 3}
+      propertyPath: wayPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279014353873686554, guid: 5c32b90952d11f44496c712ba9de793a, type: 3}
+      propertyPath: wayPoints.Array.data[0].x
+      value: 4.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279014353873686554, guid: 5c32b90952d11f44496c712ba9de793a, type: 3}
+      propertyPath: wayPoints.Array.data[0].y
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279014353873686554, guid: 5c32b90952d11f44496c712ba9de793a, type: 3}
+      propertyPath: wayPoints.Array.data[1].x
+      value: 6.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279014353873686554, guid: 5c32b90952d11f44496c712ba9de793a, type: 3}
+      propertyPath: wayPoints.Array.data[1].y
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5500034368581492870, guid: 5c32b90952d11f44496c712ba9de793a, type: 3}
       propertyPath: m_Name
       value: Crate

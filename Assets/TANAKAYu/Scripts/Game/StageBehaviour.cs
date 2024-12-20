@@ -56,8 +56,19 @@ public class StageBehaviour : MonoBehaviour
             var listeners = rootObejcts[i].GetComponentsInChildren<IGameStateListener>();
             for (int j=0; j<listeners.Length; j++)
             {
+                listeners[j].GameStateListenerDestroyed.AddListener(RemoveGameStateListener);
                 gameStateListeners.Add(listeners[j]);
             }
         }
+    }
+
+    /// <summary>
+    /// 指定のリスナーをリストから削除する。
+    /// </summary>
+    /// <param name="listener">削除したいリスナー</param>
+    void RemoveGameStateListener(IGameStateListener listener)
+    {
+        listener.GameStateListenerDestroyed.RemoveListener(RemoveGameStateListener);
+        gameStateListeners.Remove(listener);
     }
 }

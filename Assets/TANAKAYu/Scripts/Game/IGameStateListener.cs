@@ -1,8 +1,16 @@
+using UnityEngine.Events;
+
 /// <summary>
 /// ゲームの状態変化を受け取るリスナー。
 /// </summary>
 public interface IGameStateListener
 {
+    /// <summary>
+    /// リスナーをアタッチしたゲームオブジェクトをDestoryするときに
+    /// Invokeするイベント。
+    /// </summary>
+    UnityEvent<IGameStateListener> GameStateListenerDestroyed { get; }
+
     /// <summary>
     /// ゲームが開始されたときに呼び出される。
     /// </summary>
