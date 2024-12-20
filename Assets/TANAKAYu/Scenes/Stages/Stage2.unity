@@ -1156,6 +1156,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstVelocity.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstDirection.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2899510884663023101, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
       propertyPath: m_Name
       value: EnemyReflection
@@ -1327,6 +1335,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstDirection.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2899510884663023101, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
       propertyPath: m_Name
       value: EnemyReflection (3)
@@ -1498,6 +1510,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstDirection.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2899510884663023101, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
       propertyPath: m_Name
       value: EnemyReflection (2)
@@ -1726,6 +1742,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstVelocity.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstDirection.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2899510884663023101, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
       propertyPath: m_Name
       value: EnemyReflection (1)
@@ -2125,6 +2153,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstDirection.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstDirection.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2899510884663023101, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
       propertyPath: m_Name
       value: EnemyReflection (4)

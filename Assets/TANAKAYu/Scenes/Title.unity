@@ -2804,6 +2804,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259297737}
     m_Modifications:
+    - target: {fileID: 203181708319365563, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
+      propertyPath: firstVelocity.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2899510884663023101, guid: ab17ca11ce1031342b79d50d7efb0a87, type: 3}
       propertyPath: m_Name
       value: EnemyReflection
