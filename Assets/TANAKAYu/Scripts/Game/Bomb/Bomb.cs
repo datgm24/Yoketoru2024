@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 爆弾の状態などを総合的に管理するクラス。
+/// </summary>
 public class Bomb : MonoBehaviour, IGameStateListener
 {
     [SerializeField]
@@ -17,10 +20,12 @@ public class Bomb : MonoBehaviour, IGameStateListener
 
     SimpleState<State> state = new(State.None);
     IAttackable attacker;
+    IAutoMover autoMover;
 
     void Start()
     {
         attacker = GetComponent<IAttackable>();
+        autoMover = GetComponent<IAutoMover>();
         if (attacker != null)
         {
             attacker.Attacked.AddListener(OnExplosion);
@@ -39,7 +44,7 @@ public class Bomb : MonoBehaviour, IGameStateListener
     void FixedUpdate()
     {
         InitState();
-        UpdateState();
+        FixedUpdateState();
     }
 
     void InitState()
@@ -54,11 +59,21 @@ public class Bomb : MonoBehaviour, IGameStateListener
             case State.Explosion:
                 Explosion();
                 break;
+
+            case State.End:
+                autoMover.Stop();
+                break;
         }
     }
 
-    void UpdateState()
+    void FixedUpdateState()
     {
+        switch (state.CurrentState)
+        {
+            case State.Play:
+                autoMover.Move(Time.deltaTime);
+                break;
+        }
     }
 
 

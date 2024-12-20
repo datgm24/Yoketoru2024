@@ -41,6 +41,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7381444319679047012}
+  - component: {fileID: 7124211030067530837}
+  - component: {fileID: 104255091635319228}
+  - component: {fileID: 6811137336121263110}
   - component: {fileID: 7381444319679047013}
   - component: {fileID: 7381444319679047014}
   m_Layer: 0
@@ -66,6 +69,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7124211030067530837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381444319679047015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d7c56fb5b559444abd94f88cc18c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 5900383519871168932, guid: b96fed53c5410a84dbc0aa72b2c0da4d, type: 3}
+--- !u!114 &104255091635319228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381444319679047015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9efd5884813d344a9ee35a5f8e0b9b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6811137336121263110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381444319679047015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0ed311c34757545b4def37c4bc2ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  wayPoints: []
+  startIndex: 0
 --- !u!54 &7381444319679047013
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -80,7 +123,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!135 &7381444319679047014
 SphereCollider:
