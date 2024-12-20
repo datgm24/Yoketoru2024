@@ -7,6 +7,10 @@ public class GameSystem : MonoBehaviour
 {
     static int ScoreMax => 999999;
 
+#if UNITY_EDITOR
+    [SerializeField, Range(1, 2)]
+    public int startStage = 1;
+#endif
     [SerializeField]
     Fade fade = default;
     [SerializeField]
@@ -79,6 +83,20 @@ public class GameSystem : MonoBehaviour
         // 起動処理
         StartCoroutine(Fade.Cover(Color.black));
         SceneChanger.ChangeScene(loadTitleScene, unloadScenes);
+    }
+
+    /// <summary>
+    /// 新規にゲームを開始するための設定。
+    /// </summary>
+    public void NewGame()
+    {
+#if !UNITY_EDITOR
+        Stage.Start();
+#else
+        Stage.Start(startStage);
+#endif
+
+        Score.Clear();
     }
 
     /// <summary>

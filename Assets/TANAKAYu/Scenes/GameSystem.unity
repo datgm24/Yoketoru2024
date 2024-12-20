@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434b7fd642a951740bfbe1939911a593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startStage: 1
   fade: {fileID: 192709249}
   sceneChanger: {fileID: 340407276}
 --- !u!1 &426347273

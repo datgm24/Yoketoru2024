@@ -154,7 +154,7 @@ public class Title : SceneBehaviourBase
     IEnumerator GameStart()
     {
         GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Start);
-        GameSystem.Stage.Start();
+        GameSystem.NewGame();
 
         yield return GameSystem.Fade.Cover(CoverColor, CoverSeconds);
 

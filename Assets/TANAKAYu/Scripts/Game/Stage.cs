@@ -22,9 +22,9 @@ public class Stage
     /// <summary>
     /// 最初のステージにする。
     /// </summary>
-    public void Start()
+    public void Start(int start = 1)
     {
-        Current = 1;
+        Current = start;
     }
 
     /// <summary>
