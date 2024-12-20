@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemCounter : MonoBehaviour
+/// <summary>
+/// アイテムの数を管理するクラス。
+/// </summary>
+public class ItemCounter
 {
-    // Start is called before the first frame update
-    void Start()
+    public void CountItem()
     {
-        
+        Debug.Log($"アイテムを数える");
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// アイテムを1つ減らす。
+    /// </summary>
+    /// <returns>全部取り切っていたら、trueを返す。</returns>
+    public bool Decrement()
     {
-        
+        return false;
     }
 }

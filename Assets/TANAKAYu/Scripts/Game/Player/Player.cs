@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable, IGetter
 {
     enum State
     {
@@ -129,5 +129,14 @@ public class Player : MonoBehaviour, IDamageable
 
         // 移動
         mover.Move(moveInput);
+    }
+
+    /// <summary>
+    /// アイテムを取ったときに呼び出してもらう。
+    /// </summary>
+    /// <param name="point">基準点</param>
+    public void Get(int point)
+    {
+        gameInstance.GotItem(point);
     }
 }

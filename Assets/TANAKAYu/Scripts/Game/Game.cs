@@ -64,6 +64,8 @@ public class Game : SceneBehaviourBase
     StageText stageText;
     TimeText timeText;
 
+    ItemCounter itemCounter = new();
+
     public override void StartScene(GameSystem gameSystem)
     {
         base.StartScene(gameSystem);
@@ -303,6 +305,21 @@ public class Game : SceneBehaviourBase
     public void RequestClear()
     {
         state.SetNextStateForce(State.Clear);
+    }
+
+    /// <summary>
+    /// 得点アイテムを取ったら、基準点を渡して呼び出す。
+    /// アイテムの数を減らして、0になったらクリアを呼び出す。
+    /// </summary>
+    /// <param name="point">基準点</param>
+    public void GotItem(int point)
+    {
+        GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Item);
+        GameSystem.Score.Add(Mathf.FloorToInt(point * GameSystem.GameTime.Current));
+        if (itemCounter.Decrement())
+        {
+            RequestClear();
+        }
     }
 
     /// <summary>
