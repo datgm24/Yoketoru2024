@@ -37,6 +37,13 @@ public class Title : SceneBehaviourBase
 
     IEnumerator StartTitle()
     {
+        // スコアを設定
+        var scoreText = FindObjectOfType<ScoreText>();
+        if (scoreText != null)
+        {
+            scoreText.OnChanged(GameSystem.Score.Current);
+        }
+
         yield return GameSystem.Fade.Uncover(UncoverSeconds);
 
         // Start Title Control
