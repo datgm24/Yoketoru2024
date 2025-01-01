@@ -8,6 +8,8 @@
 
 - main
   - 夏休み前に開発していた旧バージョン
+- make_practice_start
+  - 開発練習用の状態を作るブランチ。準備ができたら、新しくpractice_startブランチへ移す
 - in_game
   - ゲーム開発用ブランチ
 - kai
