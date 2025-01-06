@@ -51,11 +51,6 @@ public class Player : MonoBehaviour, IGameStateListener
 
         switch (state.CurrentState)
         {
-            // 座標と向きを、Awakeで記録したものに戻す
-            case State.Reset:
-                Debug.Log($"座標と向きを、Awakeで記録したものに戻す");
-                break;
-
             case State.Play:
                 Debug.Log($"操作と移動開始");
                 break;
@@ -66,6 +61,11 @@ public class Player : MonoBehaviour, IGameStateListener
 
             case State.Clear:
                 Debug.Log($"クリア演出。なければ消す");
+                break;
+
+            // 座標と向きを、Awakeで記録したものに戻す
+            case State.Reset:
+                Debug.Log($"座標と向きを、Awakeで記録したものに戻す");
                 break;
         }
     }
