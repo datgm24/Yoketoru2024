@@ -47,6 +47,14 @@ public class StageBehaviour : MonoBehaviour
         }
     }
 
+    public void CallReset()
+    {
+        for (int i = 0; i < gameStateListeners.Count; i++)
+        {
+            gameStateListeners[i].OnReset();
+        }
+    }
+
     void FindGameStateListeners()
     {
         gameStateListeners.Clear();

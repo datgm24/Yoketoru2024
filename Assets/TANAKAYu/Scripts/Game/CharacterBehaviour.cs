@@ -73,4 +73,8 @@ public class CharacterBehaviour : MonoBehaviour, IGameStateListener
     {
         state.SetNextState(State.Play);
     }
+
+    public void OnReset()
+    {
+    }
 }

@@ -6,10 +6,15 @@ using UnityEngine.Events;
 public interface IGameStateListener
 {
     /// <summary>
-    /// リスナーをアタッチしたゲームオブジェクトをDestoryするときに
-    /// Invokeするイベント。
+    /// このゲームオブジェクトをDestoryするときにInvokeするイベント。
+    /// 呼び出し配列から削除するメソッドを登録する。
     /// </summary>
     UnityEvent<IGameStateListener> GameStateListenerDestroyed { get; }
+
+    /// <summary>
+    /// ゲームの開始状態に戻すときに呼び出される。
+    /// </summary>
+    void OnReset();
 
     /// <summary>
     /// ゲームが開始されたときに呼び出される。

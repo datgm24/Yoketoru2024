@@ -1,73 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Player : MonoBehaviour, IDamageable, IGetter
+public class Player : MonoBehaviour, IGameStateListener
 {
     enum State
     {
         None = -1,
         Play,
-        Restart,
         Miss,
         Clear,
+        Reset,
     }
 
-    Rigidbody rb;
     SimpleState<State> state = new(State.None);
-    Vector3 startPosition;
-    Vector3 startEuler;
-    IInput mouseInput = new MouseInput();
-    IInput controllerInput = new ControllerInput();
-    IMover mover;
-    Game gameInstance;
 
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-        mover = GetComponent<IMover>();
-        startPosition = transform.position;
-        startEuler = transform.eulerAngles;
-    }
+    public UnityEvent<IGameStateListener> GameStateListenerDestroyed { get; private set; } = new();
 
+    /// <summary>
+    /// フレーム更新
+    /// </summary>
     private void Update()
     {
         UpdateState();
     }
 
-    // FixedUpdate = 物理処理をするための固定更新処理
+    /// <summary>
+    /// 物理処理ための固定更新
+    /// </summary>
     void FixedUpdate()
     {
         InitState();
         FixedUpdateState();
     }
 
-    /// <summary>
-    /// ゲームが開始して、操作可能になったら、Gameから呼び出す。
-    /// </summary>
-    public void GameStart(Game game)
+    void OnDestroy()
     {
-        gameInstance = game;
-        state.SetNextState(State.Play);
+        // オブジェクトを消すときに、必ずInvokeする
+        GameStateListenerDestroyed.Invoke(this);
     }
 
     /// <summary>
-    /// リスタート
+    /// 状態の初期化処理
     /// </summary>
-    public void Restart()
-    {
-        state.SetNextState(State.Restart);
-    }
-
-    public void Damage()
-    {
-        if (state.CurrentState == State.Play)
-        {
-            state.SetNextState(State.Miss);
-        }
-    }
-
     void InitState()
     {
         if (!state.ChangeState())
@@ -77,69 +51,66 @@ public class Player : MonoBehaviour, IDamageable, IGetter
 
         switch (state.CurrentState)
         {
-            case State.Restart:
-                transform.position = startPosition;
-                transform.eulerAngles = startEuler;
-                rb.position = startPosition;
-                mover.Move(Vector2.zero);
+            // 座標と向きを、Awakeで記録したものに戻す
+            case State.Reset:
+                Debug.Log($"座標と向きを、Awakeで記録したものに戻す");
+                break;
+
+            case State.Play:
+                Debug.Log($"操作と移動開始");
                 break;
 
             case State.Miss:
-                gameInstance.RequestGameOver();
-                mover.Move(Vector2.zero);
+                Debug.Log($"ミスの演出。なければ消す");
                 break;
 
             case State.Clear:
-                mover.Move(Vector2.zero);
+                Debug.Log($"クリア演出。なければ消す");
                 break;
         }
     }
 
+    /// <summary>
+    /// 状態のフレーム更新
+    /// </summary>
     void UpdateState()
     {
         switch (state.CurrentState)
         {
             case State.Play:
-                mouseInput.Update();
-                controllerInput.Update();
                 break;
         }
     }
 
+    /// <summary>
+    /// 状態の物理更新
+    /// </summary>
     void FixedUpdateState()
     {
         switch (state.CurrentState)
         {
             case State.Play:
-                FixedUpdatePlay();
                 break;
         }
     }
 
-    void FixedUpdatePlay()
+    public void OnReset()
     {
-        Vector2 moveInput = controllerInput.MoveInput;
-        if (Mathf.Approximately(moveInput.magnitude, 0f))
-        {
-            // キーやコントローラーの入力がない場合、マウスの入力を使う
-            moveInput = mouseInput.MoveInput;
-        }
-        controllerInput.Clear();
-        mouseInput.Clear();
-
-        // 移動
-        mover.Move(moveInput);
+        state.SetNextState(State.Reset);
     }
 
-    /// <summary>
-    /// アイテムを取ったときに呼び出してもらう。
-    /// </summary>
-    /// <param name="point">基準点</param>
-    public void Get(int point)
+    public void OnGameStart()
     {
-        if (gameInstance.GotItem(point))
-        {
-            state.SetNextStateForce(State.Clear);
-        }
+        state.SetNextState(State.Play);
+    }
+
+    public void OnGameOver()
+    {
+        state.SetNextState(State.Miss);
+    }
+
+    public void OnClear()
+    {
+        state.SetNextState(State.Clear);
     }
 }

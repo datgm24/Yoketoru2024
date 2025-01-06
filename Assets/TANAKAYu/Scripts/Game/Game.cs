@@ -161,7 +161,6 @@ public class Game : SceneBehaviourBase
                 countDown.GameStarted.RemoveAllListeners();
                 bgmAudioSource.Play();
                 stageBehaviour.CallGameStart();
-                PlayerInstance.GameStart(this);
                 break;
 
             case State.GameOver:
@@ -181,7 +180,7 @@ public class Game : SceneBehaviourBase
             case State.Retry:
                 GameSystem.Score.Clear();
                 GameSystem.GameTime.Set(StartGameTime);
-                PlayerInstance.Restart();
+                stageBehaviour.CallReset();
                 state.SetNextState(State.CountDown);
                 break;
 
