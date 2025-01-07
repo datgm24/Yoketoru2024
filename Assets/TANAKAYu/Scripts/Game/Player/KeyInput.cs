@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyInput : IInput
 {
-    public Vector2 GetAndClear()
+    public Vector2 GetValue()
     {
         throw new System.NotImplementedException();
     }

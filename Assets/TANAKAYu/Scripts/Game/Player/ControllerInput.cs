@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -8,17 +6,18 @@ using UnityEngine;
 public class ControllerInput : IInput
 {
     Vector2 move;
-    public Vector2 MoveInput => currentSpeed * move / maxSpeed;
 
     float normalSpeed = 4f;
     float highSpeed = 8f;
     float maxSpeed = 20f;
     float currentSpeed = 0;
 
-    public void Clear()
+    public Vector2 GetValue()
     {
+        Vector2 res = currentSpeed * move / maxSpeed;
         move = Vector2.zero;
         currentSpeed = normalSpeed;
+        return res;
     }
 
     public void Update()
@@ -46,4 +45,5 @@ public class ControllerInput : IInput
             currentSpeed = highSpeed;
         }
     }
+
 }
