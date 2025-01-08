@@ -4,7 +4,9 @@ public class InputController
 {
     IInput[] inputs =
     {
-
+        new KeyInput(),
+        new GamePadInput(),
+        new MouseInput(),
     };
 
     public void Update()
