@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,6 +19,8 @@ public class Player : MonoBehaviour, IGameStateListener
     SimpleState<State> state = new(State.None);
 
     public UnityEvent<IGameStateListener> GameStateListenerDestroyed { get; private set; } = new();
+
+    InputController inputController = new();
 
     /// <summary>
     /// フレーム更新
@@ -80,6 +83,7 @@ public class Player : MonoBehaviour, IGameStateListener
         switch (state.CurrentState)
         {
             case State.Play:
+                inputController.Update();
                 break;
         }
     }
@@ -92,6 +96,8 @@ public class Player : MonoBehaviour, IGameStateListener
         switch (state.CurrentState)
         {
             case State.Play:
+                var move = inputController.GetValue();
+                Debug.Log($"{move}");
                 break;
         }
     }
