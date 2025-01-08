@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// プレイヤーを制御するクラス。
+/// </summary>
 public class Player : MonoBehaviour, IGameStateListener
 {
     enum State
@@ -63,7 +66,6 @@ public class Player : MonoBehaviour, IGameStateListener
                 Debug.Log($"クリア演出。なければ消す");
                 break;
 
-            // 座標と向きを、Awakeで記録したものに戻す
             case State.Reset:
                 Debug.Log($"座標と向きを、Awakeで記録したものに戻す");
                 break;
