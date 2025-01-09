@@ -1,34 +1,18 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
-/// 接触相手からIDamageableを取り出して、
-/// 取り出せたらDamageを呼び出すクラス。
+/// 接触相手がプレイヤーなら、ゲームオーバーを要求して、自分を爆破する。
 /// </summary>
-public class Attacker : MonoBehaviour
+public class Attacker : MonoBehaviour, IGameOverEmitter
 {
     [SerializeField]
     Explosion explosionPrefab = default(Explosion);
 
+    public UnityEvent GameOverRequest { get; } = new();
+
     private void OnTriggerEnter(Collider other)
     {
-        var damager = other.GetComponent<IDamageable>();
-        if (damager != null)
-        {
-            var character = GetComponent<CharacterBehaviour>();
-            if (!character.IsPlaying)
-            {
-                // プレイ中でなければなにもしない
-                return;
-            }
-
-            // 相手にダメージを与える
-            damager.Damage();
-
-            // 爆発
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            var listner = GetComponent<IGameStateListener>();
-            listner?.GameStateListenerDestroyed.Invoke(listner);
-            Destroy(gameObject);
-        }
+        Debug.Log($"爆発");
     }
 }
