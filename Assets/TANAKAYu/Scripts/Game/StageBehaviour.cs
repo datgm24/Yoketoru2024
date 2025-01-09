@@ -1,11 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// ステージ全体を管理するスクリプト
 /// </summary>
 public class StageBehaviour : MonoBehaviour
 {
+    /// <summary>
+    /// ゲームオーバーが要求されたときにInvokeするイベント。
+    /// </summary>
+    public UnityEvent GameOverRequested { get; } = new();
+
+    /// <summary>
+    /// コインを取ったときに、コインの基本点を受け取ってInvokeするイベント。
+    /// </summary>
+    public UnityEvent<int> GetCoinEmitted { get; } = new();
+
     List<IGameStateListener> gameStateListeners = new List<IGameStateListener>();
 
     void Start()
@@ -67,6 +78,25 @@ public class StageBehaviour : MonoBehaviour
                 gameStateListeners.Add(listeners[j]);
             }
         }
+    }
+
+    /// <summary>
+    /// ステージにある指定のインターフェースのインスタンスを返す。
+    /// </summary>
+    /// <typeparam name="T">指定するインターフェース</typeparam>
+    /// <returns>インスタンス</returns>
+    public List<T> GetStageInterfaces<T>()
+    {
+        var interfaces = new List<T>();
+
+        var rootObejcts = gameObject.scene.GetRootGameObjects();
+        for (int i = 0; i < rootObejcts.Length; i++)
+        {
+            var listeners = rootObejcts[i].GetComponentsInChildren<T>();
+            interfaces.AddRange(listeners);
+        }
+
+        return interfaces;
     }
 
     /// <summary>

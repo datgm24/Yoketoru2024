@@ -34,6 +34,11 @@ public class CharacterBehaviour : MonoBehaviour, IGameStateListener
         FixedUpdateState();
     }
 
+    void OnDestroy()
+    {
+        GameStateListenerDestroyed.Invoke(this);
+    }
+
     void InitState()
     {
         if (!state.ChangeState())

@@ -1,19 +1,19 @@
 using UnityEngine;
 
 /// <summary>
-/// アイテムの数を管理するクラス。
+/// コインの数を管理するクラス。
 /// </summary>
-public class ItemCounter
+public class CoinCounter
 {
     int count;
 
     /// <summary>
-    /// アイテムタグのオブジェクトを数える。
+    /// タグのオブジェクトを数える。
     /// </summary>
-    public void CountItem()
+    public void CountCoin()
     {
-        var items = GameObject.FindGameObjectsWithTag("Item");
-        count = items.Length;
+        var coins = GameObject.FindGameObjectsWithTag("Coin");
+        count = coins.Length;
     }
 
     /// <summary>

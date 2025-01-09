@@ -62,7 +62,7 @@ public class Game : SceneBehaviourBase
     StageText stageText;
     TimeText timeText;
 
-    ItemCounter itemCounter = new();
+    CoinCounter itemCounter = new();
 
     public override void StartScene(GameSystem gameSystem)
     {
@@ -92,11 +92,27 @@ public class Game : SceneBehaviourBase
         }
 
         // アイテムの数を数える
-        itemCounter.CountItem();
+        itemCounter.CountCoin();
 
+        // コインを取った処理を登録
         stageBehaviour = FindObjectOfType<StageBehaviour>();
+        var coinEmitters = stageBehaviour.GetStageInterfaces<IGetCoinEmitter>();
+        foreach(var coinEmitter in coinEmitters)
+        {
+            coinEmitter.CoinGot.AddListener(GotCoin);
+        }
+
+        // ゲームオーバーの報告を登録
+        var gameOverEmitters = stageBehaviour.GetStageInterfaces<IGameOverEmitter>();
+        foreach(var gameOverEmitter in gameOverEmitters)
+        {
+            gameOverEmitter.GameOverRequest.AddListener(RequestGameOver);
+        }
+
         StartCoroutine(GameStartCoroutine());
     }
+
+
 
     private void OnDestroy()
     {
@@ -294,7 +310,7 @@ public class Game : SceneBehaviourBase
     /// <summary>
     /// ゲームオーバーを要求
     /// </summary>
-    public void RequestGameOver()
+    void RequestGameOver()
     {
         state.SetNextState(State.GameOver);
     }
@@ -302,7 +318,7 @@ public class Game : SceneBehaviourBase
     /// <summary>
     /// クリアを要求。
     /// </summary>
-    public void RequestClear()
+    void RequestClear()
     {
         state.SetNextStateForce(State.Clear);
     }
@@ -313,17 +329,14 @@ public class Game : SceneBehaviourBase
     /// </summary>
     /// <param name="point">基準点</param>
     /// <returns>クリア時、trueを返す。</returns>
-    public bool GotItem(int point)
+    void GotCoin(int point)
     {
         GameSystem.TinyAudio.PlaySE(TinyAudio.SE.Item);
         GameSystem.Score.Add(Mathf.FloorToInt(point * GameSystem.GameTime.Current));
         if (itemCounter.Decrement())
         {
             RequestClear();
-            return true;
         }
-
-        return false;
     }
 
     /// <summary>

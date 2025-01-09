@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7381444319679047013}
   - component: {fileID: 7381444319679047014}
   m_Layer: 0
-  m_Name: EnemyPatrol
+  m_Name: BombPatrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
