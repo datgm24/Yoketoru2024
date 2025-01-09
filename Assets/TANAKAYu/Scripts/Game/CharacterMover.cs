@@ -21,7 +21,9 @@ public class CharacterMover : MonoBehaviour, IMover
 
         if (move.magnitude > 0)
         {
-            transform.Find("Pivot").rotation = Quaternion.LookRotation(move, Vector3.back);
+            float angle = Vector2.SignedAngle(Vector3.up, rb.velocity);
+            transform.Find("Pivot").eulerAngles = new Vector3(0, 0, angle);
+            //transform.Find("Pivot").rotation = Quaternion.LookRotation(move, Vector3.back);
         }
     }
 }
