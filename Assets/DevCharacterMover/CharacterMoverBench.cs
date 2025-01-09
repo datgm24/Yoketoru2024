@@ -29,7 +29,7 @@ public class CharacterMoverBench : MonoBehaviour
         {
             for (int i = 0; i < moveVectors.Length;i++)
             {
-                for (int j = 0; j < 50; j++)
+                for (int j = 0; j < 20; j++)
                 {
                     mover.Move(moveVectors[i]);
                     yield return wait;

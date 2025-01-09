@@ -17,6 +17,11 @@ public class CharacterMover : MonoBehaviour, IMover
 
     public void Move(Vector2 move)
     {
-        Debug.Log($"{move}");
+        rb.velocity = maxSpeed * move;
+
+        if (move.magnitude > 0)
+        {
+            transform.Find("Pivot").rotation = Quaternion.LookRotation(move, Vector3.back);
+        }
     }
 }
