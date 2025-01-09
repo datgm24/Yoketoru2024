@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class ReflectionMover : MonoBehaviour, IAutoMover
+/// <summary>
+/// 反射移動を制御するクラス。
+/// </summary>
+public class ReflectionMover : MonoBehaviour, IStartStop
 {
     static float MinimumSpeed => 0.01f;
 
@@ -17,21 +20,18 @@ public class ReflectionMover : MonoBehaviour, IAutoMover
         rb.velocity = Vector3.zero;
     }
 
-    public void Move(float delta)
+    private void FixedUpdate()
     {
-        if (rb.velocity.magnitude < MinimumSpeed)
-        {
-            rb.velocity = speed * firstDirection.normalized;
-        }
-        else
-        {
-            // 速度を維持
-            rb.velocity = speed * rb.velocity.normalized;
-        }
+        // TODO: 速度を維持する
     }
 
-    public void Stop()
+    public void OnGameStarted()
     {
-        rb.velocity = Vector3.zero;
+        Debug.Log($"{name} 移動開始");
+    }
+
+    public void OnGameStopped()
+    {
+        Debug.Log($"{name} 移動停止");
     }
 }

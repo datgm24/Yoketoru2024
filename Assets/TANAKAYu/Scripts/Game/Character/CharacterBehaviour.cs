@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,17 +22,16 @@ public class CharacterBehaviour : MonoBehaviour, IGameStateListener
     public bool IsPlaying => state.CurrentState == State.Play;
 
     SimpleState<State> state = new(State.None);
-    IAutoMover autoMover;
+    IStartStop[] startStops;
 
-    void Start()
+    void Awake()
     {
-        autoMover = GetComponent<IAutoMover>();
+        startStops = GetComponents<IStartStop>();
     }
 
     void FixedUpdate()
     {
         InitState();
-        FixedUpdateState();
     }
 
     void OnDestroy()
@@ -48,18 +48,18 @@ public class CharacterBehaviour : MonoBehaviour, IGameStateListener
 
         switch(state.CurrentState)
         {
-            case State.End:
-                autoMover.Stop();
-                break;
-        }
-    }
-
-    void FixedUpdateState()
-    {
-        switch (state.CurrentState)
-        {
             case State.Play:
-                autoMover.Move(Time.deltaTime);
+                for (int i=0;i<startStops.Length;i++)
+                {
+                    startStops[i].OnGameStarted();
+                }
+                break;
+
+            case State.End:
+                for (int i = 0; i < startStops.Length; i++)
+                {
+                    startStops[i].OnGameStopped();
+                }
                 break;
         }
     }
@@ -81,5 +81,6 @@ public class CharacterBehaviour : MonoBehaviour, IGameStateListener
 
     public void OnReset()
     {
+        state.SetNextState(State.End);
     }
 }
